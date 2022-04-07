@@ -16,6 +16,15 @@ const CommentSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: 'Comment is required'
+  },
+  likes: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  created: {
+    type: Date,
+    default: Date.now
   }
 })
 
