@@ -9,11 +9,22 @@ const CommentSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    trim: true
+    trim: true,
+    required: 'Name is required'
   },
   comment: {
     type: String,
-    trim: true
+    trim: true,
+    required: 'Comment is required'
+  },
+  likes: {
+    type: Number,
+    default: 0,
+    min: 0
+  },
+  created: {
+    type: Date,
+    default: Date.now
   }
 })
 
