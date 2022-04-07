@@ -9,13 +9,10 @@ router.route('/api/comments')
   .get(authCtrl.requireSignin, commentCtrl.list)
   .post(authCtrl.requireSignin, commentCtrl.create)
 
-router.route('/api/comments/:commentId')
-  .get(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.read)
+router.route('/api/comments/:commentId').get(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.read)
 
-router.route('/api/comments/user/:userId')
-  .get(authCtrl.requireSignin, commentCtrl.commentsByUserID)
+router.route('/api/comments/user/:userId').get(authCtrl.requireSignin, commentCtrl.commentsByUserID)
 
-  router.param('commentId', commentCtrl.commentByID)
-  router.param('userId', userCtrl.userByID)
+router.param('userId', userCtrl.userByID)
 
 export default router
