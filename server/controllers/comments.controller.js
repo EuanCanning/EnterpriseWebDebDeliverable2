@@ -1,4 +1,4 @@
-import Comment from '../models/comment.model'
+import Comment from '../models/comments.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
 
