@@ -5,8 +5,8 @@ import authCtrl from '../controllers/auth.controller'
 const router = express.Router()
 
 router.route('/api/comments')
-  .get(commentCtrl.list)
-  .post(commentCtrl.create)
+  .get(authCtrl.requireSignin, commentCtrl.list)
+  .post(authCtrl.requireSignin, commentCtrl.create)
 
 
 
