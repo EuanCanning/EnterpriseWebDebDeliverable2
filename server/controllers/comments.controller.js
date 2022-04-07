@@ -28,7 +28,7 @@ const list = async (req, res) => {
 }
 
 
-const commentsByID = async (req, res, next, id) => {
+const commentsByUserID = async (req, res, next, id) => {
   try {
     let comments = await Comment.find({userId : id}).select('_id userId comment likes created')
     if (!comments)
@@ -47,6 +47,21 @@ const commentsByID = async (req, res, next, id) => {
     return res.json(req.profile)
   }
 
+  const commentByID = async (req, res, next, id) => {
+    try {
+      let comment = await Comment.findById(id)
+      if (!comment)
+        return res.status('400').json({
+          error: "Comment not found"
+        })
+      req.profile = comment
+      next()
+    } catch (err) {
+      return res.status('400').json({
+        error: "Could not retrieve comment"
+      })
+    }
+  }
 
 const update = async (req, res) => {
   try {
@@ -77,7 +92,8 @@ const remove = async (req, res) => {
 
 export default {
   create,
-  commentsByID,
+  commentsByUserID,
+  commentByID,
   read,
   list,
   remove,
