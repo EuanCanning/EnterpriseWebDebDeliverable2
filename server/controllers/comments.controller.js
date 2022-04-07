@@ -36,7 +36,7 @@ const commentsByID = async (req, res, next, id) => {
         error: "User not found"
       })
     res.json(comments)
-    catch (err) {
+  }catch (err) {
       return res.status(400).json({
         error: errorHandler.getErrorMessage(err)
       })
