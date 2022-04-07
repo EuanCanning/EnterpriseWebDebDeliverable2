@@ -28,9 +28,10 @@ const list = async (req, res) => {
 }
 
 
-const commentsByUserID = async (req, res, next, id) => {
+const commentsByUserID = async (req, res) => {
   try {
-    console.log(Comment.find({userId : id}))
+    let user = req.profile
+    console.log(Comment.find({userId : user._id}).select('_id userId comment likes created'))
     let comments = await Comment.find({userId : id}).select('_id userId comment likes created')
     if (!comments)
       return res.status('400').json({
@@ -45,7 +46,7 @@ const commentsByUserID = async (req, res, next, id) => {
   }
 
   const read = (req, res) => {
-    return res.json(req.profile)
+    return res.json(comments)
   }
 
   const commentByID = async (req, res, next, id) => {
