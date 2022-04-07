@@ -78,6 +78,7 @@ const remove = async (req, res) => {
 export default {
   create,
   commentsByID,
+  read,
   list,
   remove,
   update
