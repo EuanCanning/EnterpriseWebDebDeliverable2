@@ -13,7 +13,7 @@ router.route('/api/comments/:userId/:commentId')
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.remove)
 
-router.param('comments/:userId', commentCtrl.commentsByID)
+router.param('comments/:userId', commentCtrl.commentsByID )
 
 
 
