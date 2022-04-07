@@ -69,6 +69,8 @@ const hasAuthorization = (req, res, next) => {
 }
 
 const hasCommentAuthorization = (req, res, next) => {
+  Console.log(req.profile.userId)
+  Console.log(req.auth._id)
   const authorized = req.profile && req.auth && req.profile.userId == req.auth._id
   if (!(authorized)) {
     return res.status('403').json({
