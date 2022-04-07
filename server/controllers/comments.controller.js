@@ -30,7 +30,7 @@ const list = async (req, res) => {
 
 const commentsByID = async (req, res, next, id) => {
   try {
-    let comments = await Comment.find(userId : id).select('_id userId comment likes created')
+    let comments = await Comment.find({userId : id}).select('_id userId comment likes created')
     if (!comments)
       return res.status('400').json({
         error: "User not found"
