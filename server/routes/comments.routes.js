@@ -16,7 +16,8 @@ router.route('/api/comments/:commentId')
 router.route('/api/comments/user/:userId')
   .get(authCtrl.requireSignin, commentCtrl.commentsByUserID)
 
-router.param('commentId', commentCtrl.commentByID)
+
 router.param('userId', userCtrl.userByID)
+router.param('commentId', commentCtrl.commentByID)
 
 export default router
