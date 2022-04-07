@@ -10,7 +10,8 @@ router.route('/api/comments')
   .post(authCtrl.requireSignin, commentCtrl.create)
 
 router.route('/api/comments/:commentId')
-  .get(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.read)
+  .get(authCtrl.requireSignin, commentCtrl.read)
+  .update(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.update)
 
 router.route('/api/comments/user/:userId')
   .get(authCtrl.requireSignin, commentCtrl.commentsByUserID)
