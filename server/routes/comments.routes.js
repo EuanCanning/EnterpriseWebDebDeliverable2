@@ -8,8 +8,8 @@ router.route('/api/comments')
   .get(authCtrl.requireSignin, commentCtrl.list)
   .post(authCtrl.requireSignin, commentCtrl.create)
 
-router.route('/api/comments/:commentId')
-  .get(authCtrl.requireSignin, commentCtrl.read)
+//router.route('/api/comments/:commentId')
+  //.get(authCtrl.requireSignin, commentCtrl.read)
 
 
 
