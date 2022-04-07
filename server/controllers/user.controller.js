@@ -93,6 +93,42 @@ const remove = async (req, res) => {
   }
 }
 
+const rsvp = async (req, res) => {
+  try{
+    let user = profile
+    user.eventsRsvps = user.eventsRsvps.push(req.body.eventId)
+    await user.save()
+    user.hashed_password = undefined
+    user.salt = undefined
+    res.json(user)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const unrsvp = async (req, res) => {
+  try{
+    let user = profile
+    await user.save()
+    user.hashed_password = undefined
+    user.salt = undefined
+    res.json(user)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+function arrayRemove(arr, value) { 
+    
+  return arr.filter(function(ele){ 
+      return ele != value; 
+  });
+}
+
 
 export default {
   create,
