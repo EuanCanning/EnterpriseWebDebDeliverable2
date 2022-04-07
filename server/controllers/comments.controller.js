@@ -30,6 +30,7 @@ const list = async (req, res) => {
 
 const commentsByUserID = async (req, res, next, id) => {
   try {
+    console.log(Comment.find({userId : id}))
     let comments = await Comment.find({userId : id}).select('_id userId comment likes created')
     if (!comments)
       return res.status('400').json({
