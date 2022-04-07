@@ -11,7 +11,7 @@ router.route('/api/comments')
 
 router.route('/api/comments/:commentId')
   .get(authCtrl.requireSignin, commentCtrl.read)
-  .update(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.update)
+  .put(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.update)
 
 router.route('/api/comments/user/:userId')
   .get(authCtrl.requireSignin, commentCtrl.commentsByUserID)
