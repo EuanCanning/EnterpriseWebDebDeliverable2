@@ -31,8 +31,9 @@ const list = async (req, res) => {
 const commentsByUserID = async (req, res) => {
   try {
     let user = req.profile
-    console.log(Comment.find({userId : user._id}).select('_id userId comment likes created'))
+    
     let comments = await Comment.find({userId : id}).select('_id userId comment likes created')
+    console.log(comments)
     if (!comments)
       return res.status('400').json({
         error: "User not found"
