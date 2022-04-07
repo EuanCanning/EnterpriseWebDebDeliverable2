@@ -83,7 +83,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     let comment = req.profile
-    let deletedComment = await deletedComment.remove()
+    let deletedComment = await comment.remove()
     res.json(deletedComment)
   } catch (err) {
     return res.status(400).json({
