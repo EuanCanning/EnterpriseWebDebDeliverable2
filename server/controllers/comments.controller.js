@@ -47,7 +47,7 @@ const commentsByUserID = async (req, res) => {
   }
 
   const read = (req, res) => {
-    return res.json(comments)
+    return res.json(req.profile)
   }
 
   const commentByID = async (req, res, next, id) => {
