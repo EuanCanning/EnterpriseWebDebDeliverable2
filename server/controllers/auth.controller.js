@@ -93,6 +93,18 @@ const hasAdminAuthorization = (req, res, next) => {
 }
 
 
+const hasAdminEventAuthorization = (req, res, next) => {
+  
+
+  const authorized = req.profile && req.auth && req.auth.admin == true
+  if (!(authorized)) {
+    return res.status('403').json({
+      error: "User is not authorized for admin"
+    })
+  }
+  next()
+}
+
 
 export default {
   signin,
@@ -100,5 +112,6 @@ export default {
   requireSignin,
   hasCommentAuthorization,
   hasAuthorization,
-  hasAdminAuthorization
+  hasAdminAuthorization,
+  hasAdminEventAuthorization
 }
