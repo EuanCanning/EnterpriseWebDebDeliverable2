@@ -82,7 +82,11 @@ const hasCommentAuthorization = (req, res, next) => {
 
 const hasAdminAuthorization = (req, res, next) => {
   
-
+  console.log(req.profile)
+  console.log(req.auth)
+  console.log(req.profile._id)
+  console.log(req.auth._id)
+  console.log(req.profile.admin)
   const authorized = req.profile && req.auth && req.profile._id == req.auth._id && req.profile.admin == true
   if (!(authorized)) {
     return res.status('403').json({
