@@ -4,12 +4,10 @@ import crypto from 'crypto'
 const EventsSchema = new mongoose.Schema({
   eventName: {
     type: String,
-    trim: true,
     required: 'Name is required'
   },
   description: {
     type: String,
-    trim: true,
     required: 'Description is required'
   },
   eventStartTime: {
