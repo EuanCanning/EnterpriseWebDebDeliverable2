@@ -82,7 +82,7 @@ const rsvp = async (req, res) => {
     console.log(event.Rsvps)
     console.log(event)
     await event.save()
-  res.join(event)
+  res.json(event)
   } catch (err){
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err)
