@@ -147,8 +147,8 @@ const unrsvpUser = async (req,res,next) => {
       })
     
     }
-    const rsvp = new Event(rsvps[0])
-    let deletedRsvp = await rsvp.remove()
+    const rsvp = new Rsvp(rsvps[0])
+    await rsvp.remove()
     next()
         
   }catch (err){
