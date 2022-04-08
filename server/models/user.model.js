@@ -19,10 +19,6 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
-  eventsRsvps: {
-    type: Array,
-    default: null
-  },
   profileclicks: {
     type: Number,
     default: 0,
