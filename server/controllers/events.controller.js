@@ -29,7 +29,7 @@ const list = async (req, res) => {
 
 
   const read = (req, res) => {
-    return res.json(req.profile)
+    return res.json(req.event)
   }
 
   const eventByID = async (req, res, next, id) => {
@@ -39,7 +39,7 @@ const list = async (req, res) => {
         return res.status('400').json({
           error: "Event not found"
         })
-      req.profile = event
+      req.event = event
       next()
     } catch (err) {
       return res.status('400').json({
@@ -50,7 +50,7 @@ const list = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    let event = req.profile
+    let event = req.event
     event = extend(event, req.body)
     await event.save()
     res.json(event)
@@ -64,7 +64,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    let event = req.profile
+    let event = req.event
     let deletedEvent = await event.remove()
     res.json(deletedEvent)
   } catch (err) {
@@ -76,7 +76,7 @@ const remove = async (req, res) => {
 
 const rsvp = async (req, res) => {
   try{
-    let event = req.profile
+    let event = req.event
     event.Rsvps = event.Rsvps + 1
     await event.save()
   res.join(event)
@@ -89,7 +89,7 @@ const rsvp = async (req, res) => {
 
 const unrsvp = async (req, res) => {
   try{
-    let event = req.profile
+    let event = req.event
     event.Rsvps = event.Rsvps - 1
     await event.save()
   res.join(event)

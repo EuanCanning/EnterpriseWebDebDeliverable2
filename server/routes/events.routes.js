@@ -5,18 +5,19 @@ import userCtrl from '../controllers/user.controller'
 
 const router = express.Router()
 
-router.route('/api/events')
+router.route('/api/events/:userId')
   .get(authCtrl.requireSignin, eventCtrl.list)
-  .post(authCtrl.requireSignin, authCtrl.hasAdminEventAuthorization, eventCtrl.create)
+  .post(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.create)
 
-router.route('/api/events/:eventId')
-  .get(authCtrl.requireSignin, authCtrl.hasAdminEventAuthorization, eventCtrl.read)
-  .put(authCtrl.requireSignin, authCtrl.hasAdminEventAuthorization, eventCtrl.update)
-  .delete(authCtrl.requireSignin, authCtrl.hasAdminEventAuthorization, eventCtrl.remove)
+router.route('/api/events/:userId/:eventId')
+  .get(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.read)
+  .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
+  .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.remove)
 
 router.route('/api/events/rsvp/:eventId').put(authCtrl.requireSignin, eventCtrl.rsvp)
 router.route('/api/events/unrsvp/:eventId').put(authCtrl.requireSignin, eventCtrl.unrsvp)
 
 router.param('eventId', eventCtrl.eventByID)
+router.param('userId', userCtrl.userByID)
 
 export default router

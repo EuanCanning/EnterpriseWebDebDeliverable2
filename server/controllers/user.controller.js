@@ -45,7 +45,7 @@ const userByID = async (req, res, next, id) => {
       return res.status('400').json({
         error: "User not found"
       })
-    req.profile = user
+    req.event = user
     next()
   } catch (err) {
     return res.status('400').json({
