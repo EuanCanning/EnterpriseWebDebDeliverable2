@@ -1,4 +1,5 @@
 import Event from '../models/events.model'
+import Rsvp from '../models/rsvp.model'
 import extend from 'lodash/extend'
 import errorHandler from '../helpers/dbErrorHandler'
 
@@ -103,6 +104,58 @@ const unrsvp = async (req, res) => {
   }
 }
 
+const rsvpUser = async (req,res,next) => {
+  try{
+    let userId = req.profile._id
+    let eventId = req.event._id
+    
+    let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
+    if (rsvps) {
+      return res.status('400').json({
+        error: "Rsvp has already been confirmed"
+      })
+    
+    }
+    const rsvp = new Rsvp();
+    rsvp.userID = req.profile._id;
+    rsvp.eventID = req.event._id  
+    rsvp.save()
+    next()
+        
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
+const unrsvpUser = async (req,res,next) => {
+  try{
+    let userId = req.profile._id
+    let eventId = req.event._id
+    
+    let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
+    if (!rsvps) {
+      return res.status('400').json({
+        error: "Rsvp does not exist"
+      })
+    
+    }
+    const rsvp = new Rsvp();
+    rsvp.userID = req.profile._id;
+    rsvp.eventID = req.event._id  
+    let deletedEvent = await event.remove()
+    next()
+        
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
 
 
 export default {
@@ -113,5 +166,7 @@ export default {
   remove,
   update,
   rsvp,
-  unrsvp
+  unrsvp,
+  rsvpUser,
+  unrsvpUser
 }
