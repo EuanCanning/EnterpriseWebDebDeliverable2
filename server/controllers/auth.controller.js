@@ -95,8 +95,8 @@ const hasAdminAuthorization = (req, res, next) => {
 
 const hasAdminEventAuthorization = (req, res, next) => {
   
-
-  const authorized = req.profile && req.auth && req.auth.admin == true
+console.log(req.auth.admin)
+  const authorized = req.auth.admin
   if (!(authorized)) {
     return res.status('403').json({
       error: "User is not authorized for admin"
