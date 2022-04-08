@@ -35,6 +35,6 @@ const EventsSchema = new mongoose.Schema({
 
 
 
-const eventModel = mongoose.model('Comment', EventsSchema);
+const eventModel = mongoose.model('Event', EventsSchema);
 eventModel.createIndexes();
 export default eventModel
