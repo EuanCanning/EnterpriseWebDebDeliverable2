@@ -139,7 +139,6 @@ const unrsvpUser = async (req,res,next) => {
     let eventId = req.event._id
     console.log(eventId)
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('_id userID eventID')
-    console.log("hi this is where u want to see")
     console.log(rsvps)
     if (rsvps.length == 0) {
       return res.status('400').json({
@@ -151,6 +150,28 @@ const unrsvpUser = async (req,res,next) => {
     await rsvp.remove()
     next()
         
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
+const rsvps = async (req,res) => {
+  try{
+    let userId = req.profile._id
+    console.log(userId)
+    let rsvpIDs = await Rsvp.find({userID : userId}).select('eventID')
+    console.log(rsvpIDs)
+    if (rsvpIDs.length == 0) {
+      return res.status('400').json({
+        error: "Rsvps do not exist"
+      })
+    
+    }
+    
+    res.json(rsvpIDs)   
   }catch (err){
     return res.status(400).json({
       error: errorHandler.getErrorMessage(err)
@@ -171,5 +192,6 @@ export default {
   rsvp,
   unrsvp,
   rsvpUser,
-  unrsvpUser
+  unrsvpUser,
+  rsvps
 }
