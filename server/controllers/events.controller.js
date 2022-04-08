@@ -107,9 +107,11 @@ const unrsvp = async (req, res) => {
 const rsvpUser = async (req,res,next) => {
   try{
     let userId = req.profile._id
+    console.log(userId)
     let eventId = req.event._id
-    
+    console.log(eventId)
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
+    console.log(rsvps)
     if (rsvps == null) {
       return res.status('400').json({
         error: "Rsvp has already been confirmed"
@@ -136,7 +138,7 @@ const unrsvpUser = async (req,res,next) => {
     let eventId = req.event._id
     
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
-    if (!rsvps) {
+    if (rsvps != null) {
       return res.status('400').json({
         error: "Rsvp does not exist"
       })
