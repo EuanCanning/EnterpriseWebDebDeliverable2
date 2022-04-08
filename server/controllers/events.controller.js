@@ -138,7 +138,8 @@ const unrsvpUser = async (req,res,next) => {
     console.log(userId)
     let eventId = req.event._id
     console.log(eventId)
-    let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
+    let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('_id userID eventID')
+    console.log("hi this is where u want to see")
     console.log(rsvps)
     if (rsvps.length == 0) {
       return res.status('400').json({
@@ -146,7 +147,7 @@ const unrsvpUser = async (req,res,next) => {
       })
     
     }
-    const rsvp = new Rsvp();
+    let rsvp = await Rsvp.findById(id)
     rsvp.userID = req.profile._id;
     rsvp.eventID = req.event._id  
     let deletedEvent = await event.remove()
