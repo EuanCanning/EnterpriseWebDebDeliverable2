@@ -20,6 +20,6 @@ router.route('/api/events/unrsvp/:userId/:eventId')
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, eventCtrl.unrsvpUser, eventCtrl.unrsvp)
 
 router.param('eventId', eventCtrl.eventByID)
-router.param('userId', userCtrl.userByID)
+router.param('userId', userCtrl.userByID) 
 
 export default router
