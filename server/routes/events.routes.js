@@ -14,8 +14,8 @@ router.route('/api/events/:userId/:eventId')
   .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.remove)
 
-router.route('/api/events/rsvp/:eventId').put(authCtrl.requireSignin, eventCtrl.rsvp)
-router.route('/api/events/unrsvp/:eventId').put(authCtrl.requireSignin, eventCtrl.unrsvp)
+router.route('/api/events/rsvp/:userId/:eventId').put(authCtrl.requireSignin, eventCtrl.rsvp)
+router.route('/api/events/unrsvp/:userId/:eventId').put(authCtrl.requireSignin, eventCtrl.unrsvp)
 
 router.param('eventId', eventCtrl.eventByID)
 router.param('userId', userCtrl.userByID)
