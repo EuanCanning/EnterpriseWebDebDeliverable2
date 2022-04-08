@@ -110,7 +110,7 @@ const rsvpUser = async (req,res,next) => {
     let eventId = req.event._id
     
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
-    if (rsvps) {
+    if (rsvps == null) {
       return res.status('400').json({
         error: "Rsvp has already been confirmed"
       })
