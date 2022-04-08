@@ -147,10 +147,8 @@ const unrsvpUser = async (req,res,next) => {
       })
     
     }
-    let rsvp = await Rsvp.findById(id)
-    rsvp.userID = req.profile._id;
-    rsvp.eventID = req.event._id  
-    let deletedEvent = await event.remove()
+    const rsvp = new Event(rsvps[0])
+    let deletedRsvp = await rsvp.remove()
     next()
         
   }catch (err){
