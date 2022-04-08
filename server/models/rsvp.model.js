@@ -14,6 +14,6 @@ const RsvpSchema = new mongoose.Schema({
 
 
 
-const rsvpModel = mongoose.model('Event', RsvpSchema);
+const rsvpModel = mongoose.model('Rsvp', RsvpSchema);
 rsvpModel.createIndexes();
 export default rsvpModel
