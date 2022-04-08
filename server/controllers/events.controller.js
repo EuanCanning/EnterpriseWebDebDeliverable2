@@ -108,5 +108,7 @@ export default {
   read,
   list,
   remove,
-  update
+  update,
+  rsvp,
+  unrsvp
 }
