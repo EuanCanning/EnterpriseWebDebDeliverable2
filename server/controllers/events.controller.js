@@ -138,7 +138,7 @@ const unrsvpUser = async (req,res,next) => {
     let eventId = req.event._id
     
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
-    if (rsvps == null) {
+    if (rsvps == []) {
       return res.status('400').json({
         error: "Rsvp does not exist"
       })
