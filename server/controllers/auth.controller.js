@@ -81,7 +81,7 @@ const hasCommentAuthorization = (req, res, next) => {
 }
 
 const hasAdminAuthorization = (req, res, next) => {
-  console.log("Checking admin authorisation: " + req.profile.name + " " + req.profile.admin)
+  
 
   const authorized = req.profile && req.auth && req.profile._id == req.auth._id && req.profile.admin == true
   if (!(authorized)) {
