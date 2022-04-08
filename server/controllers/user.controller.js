@@ -40,12 +40,15 @@ const listadmin = async (req, res) => {
 
 const userByID = async (req, res, next, id) => {
   try {
+    console.log(id)
+    
     let user = await User.findById(id)
+    console.log(user)
     if (!user)
       return res.status('400').json({
         error: "User not found"
       })
-    req.event = user
+    req.profile = user
     next()
   } catch (err) {
     return res.status('400').json({
