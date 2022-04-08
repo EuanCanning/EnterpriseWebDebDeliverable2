@@ -135,10 +135,12 @@ const rsvpUser = async (req,res,next) => {
 const unrsvpUser = async (req,res,next) => {
   try{
     let userId = req.profile._id
+    console.log(userId)
     let eventId = req.event._id
-    
+    console.log(eventId)
     let rsvps = await Rsvp.find({userID : userId, eventID : eventId}).select('userID eventID')
-    if (rsvps == []) {
+    console.log(rsvps)
+    if (rsvps.length == 0) {
       return res.status('400').json({
         error: "Rsvp does not exist"
       })
