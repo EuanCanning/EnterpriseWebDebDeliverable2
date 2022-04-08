@@ -77,7 +77,10 @@ const remove = async (req, res) => {
 const rsvp = async (req, res) => {
   try{
     let event = req.event
+    console.log(event)
     event.Rsvps = event.Rsvps + 1
+    console.log(event.Rsvps)
+    console.log(event)
     await event.save()
   res.join(event)
   } catch (err){
