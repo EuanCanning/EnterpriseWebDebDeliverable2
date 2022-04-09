@@ -45,8 +45,7 @@ export default function AddComment() {
     name: '',
     comment: '',
     open: false,
-    error: '',
-    redirectToComments: false
+    error: ''
   })
 
   const handleChange = comment => event => {
@@ -64,20 +63,14 @@ export default function AddComment() {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
-        setValues({ ...values, error: '', open: true,redirectToComments: true })
+        setValues({ ...values, error: '', open: true})
+        location.reload()
       }
     })
   }
 
-  const {from} = {
-    from: {
-      pathname: '/comments/'
-    }
-  }
-  const {redirectToComments} = values
-  if (redirectToComments) {
-      return (<Redirect to={from}/>)
-  }
+  
+  
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <List>
