@@ -32,6 +32,7 @@ export default function Comments() {
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
+    const jwt = auth.isAuthenticated()
 
     list({t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
@@ -54,7 +55,7 @@ export default function Comments() {
         </Typography>
         <List dense>
          {comments.map((item, i) => {
-          return <Link to={"/user/" + item._id} key={i}>
+          return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
                       <ListItemAvatar>
                         <Avatar>
