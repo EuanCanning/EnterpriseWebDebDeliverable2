@@ -49,9 +49,9 @@ export default function Comments() {
       }
     })
 
-    const abortController = new AbortController()
-    const signal = abortController.signal
-    const jwt = auth.isAuthenticated()
+    abortController = new AbortController()
+    signal = abortController.signal
+    jwt = auth.isAuthenticated()
 
     listByUserId({
       userId: match.params.userId
