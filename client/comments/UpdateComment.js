@@ -40,7 +40,7 @@ export default function UpdateComment(props) {
     comment: '',
   })
 
-  values.comment= props.commentId
+  values.comment= props.comment
 
   const jwt = auth.isAuthenticated()
   const clickButton = () => {
