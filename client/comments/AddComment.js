@@ -16,15 +16,13 @@ import auth from './../auth/auth-helper'
 import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
-  
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 300
-  },
-  submit: {
-    margin: 'auto',
-    marginBottom: theme.spacing(2)
+  root: theme.mixins.gutters({
+    padding: theme.spacing(1),
+    margin: theme.spacing(5)
+  }),
+  title: {
+    margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
+    color: theme.palette.openTitle
   }
 }))
 
