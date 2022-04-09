@@ -50,7 +50,7 @@ export default function AddComment() {
   })
 
   const handleChange = comment => event => {
-    setValues({ ...values, [comment]: event.target.value,redirectToComments: true })
+    setValues({ ...values, [comment]: event.target.value})
   }
 
   const clickSubmit = () => {
@@ -64,7 +64,7 @@ export default function AddComment() {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
-        setValues({ ...values, error: '', open: true})
+        setValues({ ...values, error: '', open: true,redirectToComments: true })
       }
     })
   }
