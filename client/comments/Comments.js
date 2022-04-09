@@ -77,23 +77,6 @@ export default function Comments() {
                       <ListItemText primary={item.name} secondary={item.comment}/>
                       
                     </ListItem>
-                    <ListItemSecondaryAction>
-                    {
-                        mycomments.find(function (mycomment){
-                          if (item._id==mycomment._id){
-                            return <div>
-                              <IconButton aria-label="Edit" color="primary">
-                                <Edit/>
-                              </IconButton>
-                              <IconButton aria-label="Delete" color="secondary">
-                                <DeleteIcon/>
-                              </IconButton>
-                          </div>
-                          }
-                        })
-                        
-                      }
-                    </ListItemSecondaryAction>
                  </Link>
                })
              }
