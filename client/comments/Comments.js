@@ -18,6 +18,7 @@ import {list,listByUserId} from './api-comment.js'
 import auth from './../auth/auth-helper'
 import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
+import DeleteComment from './DeleteComment.js'
  
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -84,9 +85,7 @@ export default function Comments() {
                                   <IconButton aria-label="Edit" color="primary">
                                     <Edit/>
                                   </IconButton>
-                                  <IconButton aria-label="Delete" color="secondary">
-                                    <DeleteIcon/>
-                                  </IconButton>
+                                  <DeleteComment commentId={item._id}/>
                             </div>}
                             }
                           )
