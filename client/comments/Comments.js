@@ -52,7 +52,7 @@ export default function Comments() {
     return (
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
-          All Users
+          Comments
         </Typography>
         <List>
          {comments.map((item, i) => {
