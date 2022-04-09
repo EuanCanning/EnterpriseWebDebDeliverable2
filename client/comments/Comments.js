@@ -8,6 +8,8 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import ListItemText from '@material-ui/core/ListItemText'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
+import DeleteIcon from '@material-ui/icons/Delete'
 import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
@@ -15,6 +17,8 @@ import {Link} from 'react-router-dom'
 import {list} from './api-comment.js'
 import auth from './../auth/auth-helper'
 import AddComment from './AddComment.js'
+import e from 'express'
+import Edit from '@material-ui/icons/Edit'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -49,11 +53,13 @@ export default function Comments() {
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
 
-    list({t: jwt.token}, signal).then((data) => {
+    listByUserId({
+      userId: match.params.userId
+    },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setComments(data)
+        setMycomments(data)
       }
     })
 
@@ -74,7 +80,25 @@ export default function Comments() {
           return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
                       <ListItemText primary={item.name} secondary={item.comment}/>
+                      
                     </ListItem>
+                    <ListItemSecondaryAction>
+                    {
+                        mycomments.find(function (mycomment){
+                          if (item._id==mycomment._id){
+                            return <div>
+                              <IconButton aria-label="Edit" color="primary">
+                                <Edit/>
+                              </IconButton>
+                              <IconButton aria-label="Delete" color="secondary">
+                                <DeleteIcon/>
+                              </IconButton>
+                          </div>
+                          }
+                        })
+                        
+                      }
+                    </ListItemSecondaryAction>
                  </Link>
                })
              }
