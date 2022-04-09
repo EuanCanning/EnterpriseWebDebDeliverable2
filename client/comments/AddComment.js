@@ -75,7 +75,7 @@ export default function AddComment() {
       <Paper className={classes.root} elevation={4}>
         <List>
           <ListItem>
-            <TextArea id="comment" label="Edit Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
+            <TextArea id="comment" label="Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
