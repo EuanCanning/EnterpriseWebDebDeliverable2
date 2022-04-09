@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from '../auth/auth-helper'
 import {update} from './api-comment.js'
 import {Redirect} from 'react-router-dom'
+import TextArea from '@material-ui/core/TextField'
 
 export default function UpdateComment(props) {
   const [open, setOpen] = useState(false)
