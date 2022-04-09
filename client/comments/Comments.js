@@ -59,12 +59,9 @@ export default function Comments() {
           return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
                       <ListItemText primary={item.name}/>
-                      <ListItemText primary={item.comment}/>
-                      <ListItemSecondaryAction>
-                      <IconButton>
-                          <ArrowForward/>
-                      </IconButton>
-                      </ListItemSecondaryAction>
+                    </ListItem>
+                    <ListItem>
+                      <ListItemText variant="p" primary={item.comment}/>
                     </ListItem>
                  </Link>
                })
