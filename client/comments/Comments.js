@@ -49,9 +49,6 @@ export default function Comments() {
       }
     })
  
-    abortController = new AbortController()
-    signal = abortController.signal
-    jwt = auth.isAuthenticated()
 
     listByUserId({
       userId: match.params.userId
