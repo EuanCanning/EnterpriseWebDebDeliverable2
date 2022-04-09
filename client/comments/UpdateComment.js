@@ -37,11 +37,7 @@ export default function UpdateComment(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [values, setValues] = useState({
-    userId: '',
-    name: '',
     comment: '',
-    open: false,
-    error: ''
   })
 
   const jwt = auth.isAuthenticated()
@@ -63,7 +59,6 @@ export default function UpdateComment(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        auth.clearJWT(() => console.log('deleted'))
         location.reload()
       }
     })
