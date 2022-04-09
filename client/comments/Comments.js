@@ -75,26 +75,26 @@ export default function Comments() {
           return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
                       <ListItemText primary={item.name} secondary={item.comment}/>
-                      
+                      <ListItemSecondaryAction>
+                      {
+                          
+                            mycomments.map((myitem, i) => {
+                              if (myitem._id==item._id){
+                                return <div>
+                                  <IconButton aria-label="Edit" color="primary">
+                                    <Edit/>
+                                  </IconButton>
+                                  <IconButton aria-label="Delete" color="secondary">
+                                    <DeleteIcon/>
+                                  </IconButton>
+                            </div>}
+                            }
+                          )
+                          
+                        }
+                      </ListItemSecondaryAction>
                     </ListItem>
-                    <ListItemSecondaryAction>
-                    {
-                        
-                          mycomments.map((myitem, i) => {
-                            if (myitem._id==item._id){
-                              return <div>
-                                <IconButton aria-label="Edit" color="primary">
-                                  <Edit/>
-                                </IconButton>
-                                <IconButton aria-label="Delete" color="secondary">
-                                  <DeleteIcon/>
-                                </IconButton>
-                          </div>}
-                          }
-                        )
-                        
-                      }
-                    </ListItemSecondaryAction>
+                    
                  </Link>
                })
              }
