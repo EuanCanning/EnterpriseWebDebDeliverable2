@@ -74,7 +74,7 @@ export default function Signin(props) {
   }
   const {redirectToReferrer} = values
   if (redirectToReferrer) {
-      return (<Redirect to={here}/>)
+      return (<Redirect to={from}/>)
   }
 
   return (

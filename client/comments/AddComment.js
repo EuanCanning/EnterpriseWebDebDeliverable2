@@ -44,11 +44,12 @@ export default function AddComment() {
     name: '',
     comment: '',
     open: false,
-    error: ''
+    error: '',
+    redirectToComments: false
   })
 
   const handleChange = comment => event => {
-    setValues({ ...values, [comment]: event.target.value })
+    setValues({ ...values, [comment]: event.target.value,redirectToComments: true })
   }
 
   const clickSubmit = () => {
@@ -67,6 +68,15 @@ export default function AddComment() {
     })
   }
 
+  const {from} = props.location.state || {
+    from: {
+      pathname: '/comments/'
+    }
+  }
+  const {redirectToComments} = values
+  if (redirectToComments) {
+      return (<Redirect to={from}/>)
+  }
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <List>
