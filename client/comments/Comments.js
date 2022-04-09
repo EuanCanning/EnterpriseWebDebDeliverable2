@@ -74,26 +74,29 @@ export default function Comments() {
         </Typography>
         <List>
          {comments.map((item, i) => {
-          return <Link to={"/comments/" + item._id} key={i}>
-                    <ListItem button>
-                      <ListItemText primary={item.name} secondary={item.comment}/>
-                      <ListItemSecondaryAction>
-                      {
-                          
-                            mycomments.map((myitem, i) => {
-                              if (myitem._id==item._id){
-                                return <div>
-                                  <UpdateComment commentId={item._id} comment={item.comment}/>
-                                  <DeleteComment commentId={item._id}/>
-                            </div>}
-                            }
-                          )
-                          
+          return <ListItem>
+                  <Link to={"/comments/" + item._id} key={i}>
+                  <ListItem Button> 
+                  <ListItemText primary={item.name} secondary={item.comment}/>
+                  </ListItem> 
+                  </Link>
+                  <ListItemSecondaryAction>
+                  {
+                      
+                        mycomments.map((myitem, i) => {
+                          if (myitem._id==item._id){
+                            return <div>
+                              <UpdateComment commentId={item._id} comment={item.comment}/>
+                              <DeleteComment commentId={item._id}/>
+                        </div>}
                         }
-                      </ListItemSecondaryAction>
-                    </ListItem>
+                      )
+                      
+                    }
+                  </ListItemSecondaryAction>
+                </ListItem>
                     
-                 </Link>
+                 
                })
              }
         </List>
