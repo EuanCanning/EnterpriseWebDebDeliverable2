@@ -49,7 +49,7 @@ export default function Comments() {
     })
 
     listByUserId({
-      userId: match.params.userId
+      userId: auth.isAuthenticated().user._id 
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
