@@ -47,8 +47,8 @@ export default function AddComment() {
     error: ''
   })
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value })
+  const handleChange = comment => event => {
+    setValues({ ...values, [comment]: event.target.value })
   }
 
   const clickSubmit = () => {
@@ -71,7 +71,7 @@ export default function AddComment() {
       <Paper className={classes.root} elevation={4}>
         <List>
           <List-item>
-            <TextArea id="comment" label="Add Comment" className={classes.textField} value={values.comment} onChange={handleChange('name')} margin="normal"/>
+            <TextArea id="comment" label="Add Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
