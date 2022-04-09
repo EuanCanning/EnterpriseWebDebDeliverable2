@@ -63,7 +63,7 @@ export default function DeleteComment(props) {
     </span>)
 
 }
-DeleteUser.propTypes = {
-  userId: PropTypes.string.isRequired
+DeleteComment.propTypes = {
+  commentId: PropTypes.string.isRequired
 }
 
