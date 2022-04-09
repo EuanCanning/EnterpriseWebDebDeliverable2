@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function AddComment() {
+export default function AddComment(props) {
   const classes = useStyles()
   const [values, setValues] = useState({
     userId: '',

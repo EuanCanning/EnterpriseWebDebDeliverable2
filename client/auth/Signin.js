@@ -64,7 +64,7 @@ export default function Signin(props) {
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value })
-  }
+  } 
 
   const {from} = props.location.state || {
       from: {
