@@ -12,8 +12,9 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
-
 import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -25,13 +26,12 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.openTitle
   },
   textArea: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    margin: 'auto',
+    height: 100,
     width: 500
   },
   submit: {
-    margin: 'auto',
-    center
+    margin: 'auto'
   }
 }))
 
@@ -69,15 +69,20 @@ export default function AddComment() {
 
     return (<div>
       <Paper className={classes.root} elevation={4}>
-          <TextArea id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/>
-          {
-            values.error && (<Typography component="p" color="error">
-              <Icon color="error" className={classes.error}>error</Icon>
-              {values.error}</Typography>)
-          }
-        
-          <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
-        </Paper>
+        <List>
+          <List-item>
+            <TextArea id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/>
+            {
+              values.error && (<Typography component="p" color="error">
+                <Icon color="error" className={classes.error}>error</Icon>
+                {values.error}</Typography>)
+            }
+          </List-item>
+          <List-item>
+            <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
+            </List-item>
+       </List> 
+      </Paper>
       
       
     </div>
