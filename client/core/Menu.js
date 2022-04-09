@@ -17,16 +17,14 @@ const isActive = (history, path) => {
 const Menu = withRouter(({history}) => (
   <AppBar position="static">
     <Toolbar>
-      <Typography variant="h6" color="inherit">
-        Lab 25
-      </Typography>
+      
       <Link to="/">
+      <Typography variant="h6" color="inherit">
+        LoveForUglyAnimals
+      </Typography>
         <IconButton aria-label="Home" style={isActive(history, "/")}>
           <HomeIcon/>
         </IconButton>
-      </Link>
-      <Link to="/users">
-        <Button style={isActive(history, "/users")}>Users2</Button>
       </Link>
       {
         !auth.isAuthenticated() && (<span>
@@ -42,6 +40,10 @@ const Menu = withRouter(({history}) => (
       }
       {
         auth.isAuthenticated() && (<span>
+          <Link to="/comments">
+            <Button style={isActive(history, "/comments")}>Comments
+            </Button>
+          </Link>
           <Link to={"/user/" + auth.isAuthenticated().user._id}>
             <Button style={isActive(history, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
           </Link>
