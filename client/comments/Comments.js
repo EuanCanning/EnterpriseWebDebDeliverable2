@@ -54,15 +54,10 @@ export default function Comments() {
         <Typography variant="h6" className={classes.title}>
           All Users
         </Typography>
-        <List dense>
+        <List>
          {comments.map((item, i) => {
           return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
-                      <ListItemAvatar>
-                        <Avatar>
-                          <Person/>
-                        </Avatar>
-                      </ListItemAvatar>
                       <ListItemText primary={item.name}/>
                       <ListItemText primary={item.comment}/>
                       <ListItemSecondaryAction>
