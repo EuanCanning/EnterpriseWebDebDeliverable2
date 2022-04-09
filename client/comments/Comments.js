@@ -82,9 +82,7 @@ export default function Comments() {
                             mycomments.map((myitem, i) => {
                               if (myitem._id==item._id){
                                 return <div>
-                                  <IconButton aria-label="Edit" color="primary">
-                                    <Edit/>
-                                  </IconButton>
+                                  <UpdateComment commentId={item._id} comment={item.comment}/>
                                   <DeleteComment commentId={item._id}/>
                             </div>}
                             }
