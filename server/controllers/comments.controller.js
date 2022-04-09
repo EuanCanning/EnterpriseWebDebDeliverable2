@@ -18,7 +18,7 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let comments = await Comment.find().select('_id userId comment likes created')
+    let comments = await Comment.find().select('_id userId name comment likes created')
     res.json(comments)
   } catch (err) {
     return res.status(400).json({
