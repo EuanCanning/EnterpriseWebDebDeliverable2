@@ -67,5 +67,5 @@ export default function Comments() {
         </List>
       </Paper>
       
-    )+addComment
+    )
 }
