@@ -1,7 +1,4 @@
 import React, {useState} from 'react'
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
@@ -15,6 +12,8 @@ import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
 import {Link} from 'react-router-dom'
 import auth from './../auth/auth-helper'
+
+import Paper from '@material-ui/core/Paper'
 
 const useStyles = makeStyles(theme => ({
   
