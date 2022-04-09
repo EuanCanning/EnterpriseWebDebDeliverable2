@@ -64,6 +64,7 @@ export default function Comments() {
                         </Avatar>
                       </ListItemAvatar>
                       <ListItemText primary={item.name}/>
+                      <ListItemText primary={item.comment}/>
                       <ListItemSecondaryAction>
                       <IconButton>
                           <ArrowForward/>
