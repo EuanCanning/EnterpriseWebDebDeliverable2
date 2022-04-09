@@ -14,7 +14,6 @@ import {Redirect} from 'react-router-dom'
 
 export default function DeleteComment(props) {
   const [open, setOpen] = useState(false)
-  const [redirect, setRedirect] = useState(false)
 
   const jwt = auth.isAuthenticated()
   const clickButton = () => {
@@ -28,7 +27,7 @@ export default function DeleteComment(props) {
         console.log(data.error)
       } else {
         auth.clearJWT(() => console.log('deleted'))
-        setRedirect(true)
+        location.reload()
       }
     })
   }
@@ -36,9 +35,7 @@ export default function DeleteComment(props) {
     setOpen(false)
   }
 
-  if (redirect) {
-    return <Redirect to='/'/>
-  }
+  
     return (<span>
       <IconButton aria-label="Delete" onClick={clickButton} color="secondary">
         <DeleteIcon/>
