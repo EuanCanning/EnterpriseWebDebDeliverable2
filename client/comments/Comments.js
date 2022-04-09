@@ -30,8 +30,21 @@ const useStyles = makeStyles(theme => ({
 export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
+  const [mycomments, setMycomments] = useState([])
 
   useEffect(() => {
+    const abortController = new AbortController()
+    const signal = abortController.signal
+    const jwt = auth.isAuthenticated()
+
+    list({t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setComments(data)
+      }
+    })
+
     const abortController = new AbortController()
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()

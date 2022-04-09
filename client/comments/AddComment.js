@@ -63,7 +63,7 @@ export default function AddComment() {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
-        setValues({ ...values, error: '', open: true})
+        setValues({ ...values, error: ''})
         location.reload()
       }
     })

@@ -32,7 +32,7 @@ const commentsByUserID = async (req, res) => {
   try {
     let user = req.profile
     
-    let comments = await Comment.find({userId : user._id}).select('_id userId comment likes created')
+    let comments = await Comment.find({userId : user._id}).select('_id')
     console.log(comments)
     if (!comments)
       return res.status('400').json({
