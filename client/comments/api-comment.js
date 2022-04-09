@@ -1,10 +1,11 @@
-const create = async (comment) => {
+const create = async (credentials, comment) => {
   try {
       let response = await fetch('/api/comments/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
         },
         body: JSON.stringify(comment)
       })

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import TextArea from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core/styles'
@@ -23,8 +23,19 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
+  },
+  textArea: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 500
+  },
+  submit: {
+    margin: 'auto',
+    center
   }
 }))
+
+
 
 export default function AddComment() {
   const classes = useStyles()
@@ -44,9 +55,10 @@ export default function AddComment() {
     const comment = {
       userId: auth.isAuthenticated().user._id || undefined,
       name: auth.isAuthenticated().user.name || undefined,
-      comment: values.comment || undefined,
+      comment: values.comment || undefined
     }
-    create(comment).then((data) => {
+    const jwt = auth.isAuthenticated()
+    create({t: jwt.token},comment).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
@@ -57,7 +69,7 @@ export default function AddComment() {
 
     return (<div>
       <Paper className={classes.root} elevation={4}>
-          <TextField id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/>
+          <TextArea id="name" label="Name" className={classes.textField} value={values.name} onChange={handleChange('name')} margin="normal"/>
           {
             values.error && (<Typography component="p" color="error">
               <Icon color="error" className={classes.error}>error</Icon>
