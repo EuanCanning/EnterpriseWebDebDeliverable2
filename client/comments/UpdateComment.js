@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 export default function UpdateComment(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
-  const [values, setValues] = useState({
+  let [values, setValues] = useState({
     comment: '',
   })
 
