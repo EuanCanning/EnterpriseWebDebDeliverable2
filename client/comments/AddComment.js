@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function AddComment(props) {
+export default function AddComment() {
   const classes = useStyles()
   const [values, setValues] = useState({
     userId: '',
@@ -69,7 +69,7 @@ export default function AddComment(props) {
     })
   }
 
-  const {from} = props.location.state || {
+  const {from} = {
     from: {
       pathname: '/comments/'
     }
