@@ -15,6 +15,7 @@ import auth from './../auth/auth-helper'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import {Redirect} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -37,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function AddComment() {
+export default function AddComment(props) {
   const classes = useStyles()
   const [values, setValues] = useState({
     userId: '',
@@ -80,17 +81,17 @@ export default function AddComment() {
     return (<div>
       <Paper className={classes.root} elevation={4}>
         <List>
-          <List-item>
+          <ListItem>
             <TextArea id="comment" label="Add Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
                 {values.error}</Typography>)
             }
-          </List-item>
-          <List-item>
+          </ListItem>
+          <ListItem>
             <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
-            </List-item>
+            </ListItem>
        </List> 
       </Paper>
       
