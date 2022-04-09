@@ -50,16 +50,7 @@ export default function Comments() {
     })
  
 
-    listByUserId({
-      userId: match.params.userId
-    },{t: jwt.token}, signal).then((data) => {
-      if (data && data.error) {
-        console.log(data.error)
-      } else {
-        setMycomments(data)
-      }
-    })
-
+    
     return function cleanup(){
       abortController.abort()
     }
