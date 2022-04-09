@@ -18,8 +18,8 @@ import {list} from './api-comment.js'
 import auth from './../auth/auth-helper'
 import AddComment from './AddComment.js'
 import e from 'express'
-import Edit from '@material-ui/icons/Edit'
-
+import Edit from '@material-ui/icons/Edit' 
+ 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
@@ -48,7 +48,7 @@ export default function Comments() {
         setComments(data)
       }
     })
-
+ 
     abortController = new AbortController()
     signal = abortController.signal
     jwt = auth.isAuthenticated()
