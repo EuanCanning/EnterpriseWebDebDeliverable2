@@ -33,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
+  const [mycomments, setMycomments] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -47,8 +48,20 @@ export default function Comments() {
       }
     })
  
+    abortController = new AbortController()
+    signal = abortController.signal
+    jwt = auth.isAuthenticated()
 
-    
+    listByUserId({
+      userId: match.params.userId
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setMycomments(data)
+      }
+    })
+
     return function cleanup(){
       abortController.abort()
     }
@@ -68,6 +81,23 @@ export default function Comments() {
                       <ListItemText primary={item.name} secondary={item.comment}/>
                       
                     </ListItem>
+                    <ListItemSecondaryAction>
+                    {
+                        mycomments.find(function (mycomment){
+                          if (item._id==mycomment._id){
+                            return <div>
+                              <IconButton aria-label="Edit" color="primary">
+                                <Edit/>
+                              </IconButton>
+                              <IconButton aria-label="Delete" color="secondary">
+                                <DeleteIcon/>
+                              </IconButton>
+                          </div>
+                          }
+                        })
+                        
+                      }
+                    </ListItemSecondaryAction>
                  </Link>
                })
              }
