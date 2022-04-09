@@ -1,0 +1,129 @@
+const create = async (params, credentials, event) => {
+  try {
+      let response = await fetch('/api/events/' + params.userId, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + credentials.t
+        },
+        body: JSON.stringify(event)
+      })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const list = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/events/' + params.userId, {
+      method: 'GET',
+      signal: signal,
+       headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+
+const read = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/events/' + params.userId + '/' + params.eventId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const update = async (params, credentials, event) => {
+  try {
+    let response = await fetch('/api/events/' + params.userId + '/' + params.eventId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      },
+      body: JSON.stringify(event)
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const remove = async (params, credentials) => {
+  try {
+    let response = await fetch('/api/events/' + params.userId + '/' + params.eventId, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const rsvp = async (params, credentials) => {
+  try {
+    let response = await fetch('/api/events/rsvp/' + params.userId + '/' + params.eventId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const unrsvp = async (params, credentials) => {
+  try {
+    let response = await fetch('/api/events/unrsvp/' + params.userId + '/' + params.eventId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const userRsvps = async ()
+
+export {
+  create,
+  list,
+  read,
+  update,
+  remove,
+  rsvp,
+  unrsvp,
+  userRsvps
+}
