@@ -19,6 +19,7 @@ import auth from './../auth/auth-helper'
 import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
 import DeleteComment from './DeleteComment.js'
+import UpdateComment from './UpdateComment.js'
  
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
