@@ -58,10 +58,7 @@ export default function Comments() {
          {comments.map((item, i) => {
           return <Link to={"/comments/" + item._id} key={i}>
                     <ListItem button>
-                      <ListItemText primary={item.name}/>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText variant="p" primary={item.comment}/>
+                      <ListItemText primary={item.name} secondary={item.comment}/>
                     </ListItem>
                  </Link>
                })
