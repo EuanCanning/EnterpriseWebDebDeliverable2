@@ -34,7 +34,6 @@ const useStyles = makeStyles(theme => ({
 export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
-  const [mycomments, setMycomments] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
