@@ -36,6 +36,13 @@ const useStyles = makeStyles(theme => ({
 export default function UpdateComment(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
+  const [values, setValues] = useState({
+    userId: '',
+    name: '',
+    comment: '',
+    open: false,
+    error: ''
+  })
 
   const jwt = auth.isAuthenticated()
   const clickButton = () => {
