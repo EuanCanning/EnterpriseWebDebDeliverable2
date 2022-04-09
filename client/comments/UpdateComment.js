@@ -40,6 +40,8 @@ export default function UpdateComment(props) {
     comment: '',
   })
 
+  values.comment= props.commentId
+
   const jwt = auth.isAuthenticated()
   const clickButton = () => {
     setOpen(true)
@@ -76,7 +78,7 @@ export default function UpdateComment(props) {
       <Dialog open={open} onClose={handleRequestClose}>
         <DialogTitle>{"Delete Account"}</DialogTitle>
         <DialogContent>
-          <TextArea id="comment" label="Edit Comment" className={classes.textArea} value={props.commentId} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
+          <TextArea id="comment" label="Edit Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
