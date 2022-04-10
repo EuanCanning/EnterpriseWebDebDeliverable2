@@ -20,7 +20,10 @@ import auth from '../auth/auth-helper'
 import Edit from '@material-ui/icons/Edit' 
 //import DeleteComment from './DeleteComment.js'
 //import UpdateComment from './UpdateComment.js'
-import {Container, Row, Col} from 'react-bootstrap'
+import myImg from './../assets/images/myimage.png'
+import Card from '@material-ui/core/Card'
+import CardMedia from '@material-ui/core/CardMedia'
+
  
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -36,6 +39,15 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     fontSize:13,
+  },
+  card: {
+    maxWidth: 128,
+    margin: 'auto',
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5)
+  },
+  media: {
+    minHeight: 80
   }
 }))
 
@@ -87,43 +99,39 @@ export default function Events({ match }) {
         
          {events.map((item, i) => {
           return <Paper className={classes.root} elevation={4}>
-            <container>
-              <Row>
-                <Col sm={8}>
-                  <List>
-                    <ListItem>
-                      <ListItem Button> 
-                      <ListItemText primary={item.eventName} className={classes.title2}/>
-                      </ListItem> 
-                      <ListItemSecondaryAction>
-                      
-                      </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem>
-                      <ListItem Button> 
-                      <ListItemText primary={item.description} className={classes.description}/>
-                      </ListItem> 
-                      <ListItemSecondaryAction>
-                      {/*
-                          
-                            mycomments.map((myitem, i) => {
-                              if (myitem._id==item._id){
-                                return <div>
-                                  <UpdateComment commentId={item._id} comment={item.comment}/>
-                                  <DeleteComment commentId={item._id}/>
-                            </div>}
-                            }
-                          )
-                          
-                          */}
-                      </ListItemSecondaryAction>
-                    </ListItem>    
+            <List>
+              <ListItem>
+                <ListItem Button> 
+                <ListItemText primary={item.eventName} className={classes.title2}/>
+                </ListItem> 
+                <ListItemSecondaryAction>
+                
+                </ListItemSecondaryAction>
+              </ListItem>
+              <ListItem>
+                <ListItem Button> 
+                <ListItemText primary={item.description} className={classes.description}/>
+                </ListItem> 
+                <ListItemSecondaryAction>
+                <Card className={classes.card}>
+                <CardMedia className={classes.media} image={myImg} title="My Image"/>
+              </Card>
+                {/*
                     
-                  </List>
-                </Col>
-                <Col sm={4}>test</Col>
-              </Row>
-            </container>  
+                      mycomments.map((myitem, i) => {
+                        if (myitem._id==item._id){
+                          return <div>
+                            <UpdateComment commentId={item._id} comment={item.comment}/>
+                            <DeleteComment commentId={item._id}/>
+                      </div>}
+                      }
+                    )
+                    
+                    */}
+                </ListItemSecondaryAction>
+              </ListItem>    
+              
+            </List> 
           </Paper>
                })
              }
