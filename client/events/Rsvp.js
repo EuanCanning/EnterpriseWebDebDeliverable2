@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
 export default function Rsvp(props) {
   console.log(1)
   console.log(props.userId)
-  console.log(passthrough.eventId)
+  console.log(props.eventId)
   const classes = useStyles()
   const [values, setValues] = useState({
     rsvp : props.rsvp,
