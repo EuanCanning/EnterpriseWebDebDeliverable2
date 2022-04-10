@@ -133,26 +133,15 @@ export default function Events({ match }) {
                     
                   }
                   {
-                    !myrsvps.map((myrsvp, i) => {
+                    /*!myrsvps.map((myrsvp, i) => {
                       if (myrsvp.eventID==item._id){
                         return <div>
                           <Rsvp rsvp={false}/>
                     </div>}
                     }
                   ) && <Rsvp rsvp={false}/>
-                  }
-                {/*
-                    
-                      mycomments.map((myitem, i) => {
-                        if (myitem._id==item._id){
-                          return <div>
-                            <UpdateComment commentId={item._id} comment={item.comment}/>
-                            <DeleteComment commentId={item._id}/>
-                      </div>}
-                      }
-                    )
-                    
-                    */}
+                  */}
+                
                 </ListItemSecondaryAction>
               </ListItem>   
                 <ListItem>
