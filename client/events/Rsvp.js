@@ -34,7 +34,7 @@ export default function Rsvp(props) {
   })
   const [passthrough, setPassthrough] = useState({
     userId : props.userId,
-    eventId : props.eventId,
+    eventId : props.userId,
   })
   const jwt = auth.isAuthenticated()
 
