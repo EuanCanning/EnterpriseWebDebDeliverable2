@@ -29,7 +29,7 @@ export default function Rsvp(props) {
   
   const classes = useStyles()
   const [values, setValues] = useState({
-    rsvp = ''
+    rsvp : ''
   })
 
   const handleChange = rsvp => event => {
