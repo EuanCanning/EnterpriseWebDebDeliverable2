@@ -78,6 +78,7 @@ export default function Events({ match }) {
       if (data && data.error) {
         console.log(data.error)
       } else {
+        console.log('hi')
         console.log(data)
         setMyrsvps(data)
       }
