@@ -30,7 +30,7 @@ export default function Rsvp(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [values, setValues] = useState({
-    rsvp: props.rsvp || false,
+    rsvp: true,
   })
 
   const handleChange = checked => event => {
