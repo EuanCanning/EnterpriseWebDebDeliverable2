@@ -32,7 +32,8 @@ export default function Rsvp(props) {
   const [values, setValues] = useState({
     rsvp : props.rsvp
   })
-
+  const jwt = auth.isAuthenticated()
+  
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.checked})
     if (values.rsvp==true){
