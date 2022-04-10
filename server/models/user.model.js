@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
   updated: Date,
     created: {
       type: Date,
-      default: Date.now
+      default: Date.now.format('YYYY-mm-D, h:mm')
     }
 })
 
