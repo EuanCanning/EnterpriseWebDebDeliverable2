@@ -30,6 +30,7 @@ export default function Rsvp(props) {
   console.log(1)
   console.log(props.userId)
   console.log(props.eventId)
+  console.log(rops.rsvp)
   const classes = useStyles()
   const [values, setValues] = useState({
     rsvp : props.rsvp,
