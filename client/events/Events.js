@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
-    fontsize: 10
+    fontSize: 12,
   }
 }))
 
