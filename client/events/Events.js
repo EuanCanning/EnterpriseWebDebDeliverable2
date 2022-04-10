@@ -125,7 +125,7 @@ export default function Events({ match }) {
                         console.log(item._id)
                         if (myrsvp.eventID==item._id){
                           return <div>
-                            <Rsvp rsvp={true} userId={match.params.userId} eventId={myrsvp.eventID}/>
+                            <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>
                       </div>}
                       }
                     )
@@ -137,7 +137,7 @@ export default function Events({ match }) {
                       if (myrsvp.eventID==item._id){
                         return true}
                     }
-                  ) && <Rsvp rsvp={false}/>
+                  ) && <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>
                   }
                 
                 </ListItemSecondaryAction>
