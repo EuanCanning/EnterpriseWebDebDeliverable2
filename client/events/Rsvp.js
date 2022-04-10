@@ -33,8 +33,8 @@ export default function Rsvp(props) {
     rsvp: true,
   })
 
-  const handleChange = checked => event => {
-    setValues({ ...values, [checked]: event.target.value})
+  const handleChange = rsvp => event => {
+    setValues({ ...values, [rsvp]: event.target.value})
     console.log(values.rsvp)
     if (values.rsvp == true){
       
@@ -50,7 +50,7 @@ export default function Rsvp(props) {
     return (<div>
       <ListItemText primary={'RSVP'} className={classes.description}/>
       {props.rsvp &&
-        <Checkbox checked={values.checked} defaultChecked onChange={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
+        <Checkbox checked={values.rsvp} defaultChecked onChange={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
       }
       {!props.rsvp &&
         <Checkbox checked={values.checked} onChange={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
