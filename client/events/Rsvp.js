@@ -73,15 +73,9 @@ export default function Rsvp(props) {
   
   
   
-    return (<div> 
-      <ListItemText primary={'RSVP'} className={classes.description}/>
-      {props.rsvp &&
-        <Checkbox checked={values.rsvp} defaultChecked onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
-      }
-      {!props.rsvp &&
-        <Checkbox checked={values.rsvp} onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
-      }
-    </div>)
+    return (<Checkbox checked={values.rsvp} onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
+    
+    )
 
 }
 Rsvp.propTypes = {
