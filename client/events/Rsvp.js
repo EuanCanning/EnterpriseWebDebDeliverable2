@@ -52,7 +52,7 @@ export default function Rsvp(props) {
         <Checkbox checked={values.checked} onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
       }
       {!props.rsvp &&
-        <Checkbox checked={values.checked} onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
+        <Checkbox checked={values.checked} defaultChecked onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
       }
     </div>)
 
