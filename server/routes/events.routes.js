@@ -14,12 +14,12 @@ router.route('/api/events/:userId/:eventId')
   .put(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasAdminAuthorization, eventCtrl.remove)
 
-router.route('/api/events/rsvp/:userId/:eventId')
+router.route('/api/rsvp/:userId/:eventId')
   .put(authCtrl.requireSignin,authCtrl.hasAuthorization, eventCtrl.rsvpUser, eventCtrl.rsvp)
-router.route('/api/events/unrsvp/:userId/:eventId') 
+router.route('/api/unrsvp/:userId/:eventId') 
   .put(authCtrl.requireSignin, authCtrl.hasAuthorization, eventCtrl.unrsvpUser, eventCtrl.unrsvp)
 
-router.route('/api/events/rsvps/:userId')
+router.route('/api/rsvps/:userId')
   .get(authCtrl.requireSignin,authCtrl.hasAuthorization, eventCtrl.rsvps)
 
 router.param('eventId', eventCtrl.eventByID)
