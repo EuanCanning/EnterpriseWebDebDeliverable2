@@ -77,7 +77,7 @@ export default function Rsvp(props) {
 }
 Rsvp.propTypes = {
   rsvp: PropTypes.bool,
-  userId: propTypes.string,
-  eventId: propTypes.string
+  userId: PropTypes.string,
+  eventId: PropTypes.string
 }
 
