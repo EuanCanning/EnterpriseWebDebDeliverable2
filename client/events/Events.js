@@ -135,9 +135,7 @@ export default function Events({ match }) {
                   {
                     !myrsvps.map((myrsvp, i) => {
                       if (myrsvp.eventID==item._id){
-                        return <div>
-                          <Rsvp rsvp={false}/>
-                    </div>}
+                        return true}
                     }
                   ) && <Rsvp rsvp={false}/>
                   }
