@@ -54,7 +54,6 @@ export default function Rsvp(props) {
         if (data && data.error) {
           console.log(data.error)
         } else {
-          location.reload()
         }
       })
     }
@@ -66,7 +65,6 @@ export default function Rsvp(props) {
         if (data && data.error) {
           console.log(data.error)
         } else {
-          location.reload()
         }
       })
     }
