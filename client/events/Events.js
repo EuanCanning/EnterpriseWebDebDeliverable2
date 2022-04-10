@@ -41,14 +41,14 @@ const useStyles = makeStyles(theme => ({
     fontSize:13,
   },
   card: {
-    maxWidth: 128,
-    minWidth: 128,
+    maxWidth: 300,
+    minWidth: 300,
     margin: 'auto',
     marginTop: theme.spacing(5),
     marginBottom: theme.spacing(5)
   },
   media: {
-    minHeight: 80
+    minHeight: 200
   }
 }))
 
