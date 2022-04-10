@@ -13,6 +13,7 @@ import {Redirect} from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
 import { makeStyles } from '@material-ui/core/styles'
 import ListItemText from '@material-ui/core/ListItemText'
+import {userrsvp, userunrsvp} from './api-event.js'
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,7 +35,30 @@ export default function Rsvp(props) {
 
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.checked})
-    console.log(values.rsvp)
+    if (values.rsvp==true){
+      userrsvp({
+        userId: props.userId,
+        eventId:props.eventId
+      }, {t: jwt.token}).then((data) => {
+        if (data && data.error) {
+          console.log(data.error)
+        } else {
+          location.reload()
+        }
+      })
+    }
+    else if (values.rsvp==false){
+      userunrsvp({
+        userId: props.userId,
+        eventId:props.eventId
+      }, {t: jwt.token}).then((data) => {
+        if (data && data.error) {
+          console.log(data.error)
+        } else {
+          location.reload()
+        }
+      })
+    }
   }
   
   
@@ -52,6 +76,8 @@ export default function Rsvp(props) {
 
 }
 Rsvp.propTypes = {
-  rsvp: PropTypes.bool
+  rsvp: PropTypes.bool,
+  userId: propTypes.String,
+  eventId: propTypes.String
 }
 

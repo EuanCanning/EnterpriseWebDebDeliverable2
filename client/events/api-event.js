@@ -83,7 +83,7 @@ const remove = async (params, credentials) => {
   }
 }
 
-const rsvp = async (params, credentials) => {
+const userrsvp = async (params, credentials) => {
   try {
     let response = await fetch('/api/rsvp/' + params.userId + '/' + params.eventId, {
       method: 'PUT',
@@ -99,7 +99,7 @@ const rsvp = async (params, credentials) => {
   }
 }
 
-const unrsvp = async (params, credentials) => {
+const userunrsvp = async (params, credentials) => {
   try {
     let response = await fetch('/api/unrsvp/' + params.userId + '/' + params.eventId, {
       method: 'PUT',
@@ -139,7 +139,7 @@ export {
   read,
   update,
   remove,
-  rsvp,
-  unrsvp,
+  userrsvp,
+  userunrsvp,
   userRsvps
 }
