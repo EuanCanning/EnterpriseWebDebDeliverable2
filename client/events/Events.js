@@ -133,7 +133,7 @@ export default function Events({ match }) {
                     
                   }
                   {
-                    !myrsvps.map((myrsvp, i) => {
+                    !myrsvps.find((myrsvp) => {
                       if (myrsvp.eventID==item._id){
                         return true}
                     }
