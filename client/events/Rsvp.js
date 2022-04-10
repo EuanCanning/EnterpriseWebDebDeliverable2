@@ -44,6 +44,9 @@ export default function Rsvp(props) {
       {props.rsvp &&
         <Checkbox checked={values.rsvp} defaultChecked onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
       }
+      {!props.rsvp &&
+        <Checkbox checked={values.rsvp} onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
+      }
     </div>)
 
 }
