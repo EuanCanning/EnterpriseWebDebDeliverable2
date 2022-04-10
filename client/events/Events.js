@@ -121,9 +121,9 @@ export default function Events({ match }) {
                 <ListItemSecondaryAction>
                   {
                       myrsvps.map((myrsvp, i) => {
-                        console.log(myrsvp.eventId)
+                        console.log(myrsvp.eventID)
                         console.log(item._id)
-                        if (myrsvp.eventId==item._id){
+                        if (myrsvp.eventID==item._id){
                           return <div>
                             <Rsvp rsvp={true}/>
                       </div>}
