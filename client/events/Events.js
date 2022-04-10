@@ -56,7 +56,6 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -114,9 +113,7 @@ export default function Events({ match }) {
                 <ListItemText primary={item.description} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
-                <Card className={classes.card}>
-                <CardMedia className={classes.media} image={myImg} title="My Image"/>
-              </Card>
+                
                 {/*
                     
                       mycomments.map((myitem, i) => {
@@ -130,7 +127,15 @@ export default function Events({ match }) {
                     
                     */}
                 </ListItemSecondaryAction>
-              </ListItem>    
+              </ListItem>   
+                <ListItem>
+                  <ListItem Button> 
+                  <ListItemText primary={'Date: ' + item.eventStartTime.getDate} className={classes.description}/>
+                </ListItem> 
+                <ListItemSecondaryAction>
+                
+                </ListItemSecondaryAction>
+              </ListItem> 
               
             </List> 
           </Paper>
