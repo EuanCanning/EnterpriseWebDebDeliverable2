@@ -114,7 +114,26 @@ export default function Events({ match }) {
                 <ListItemText primary={item.description} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
-                  <Rsvp/>
+                  {
+                      myrsvps.map((myrsvp, i) => {
+                        if (myrsvp._id==item._id){
+                          return <div>
+                            <Rsvp rsvp={true}/>
+                      </div>}
+                      }
+                    )
+                      
+                    
+                  }
+                  {
+                    !myrsvps.map((myrsvp, i) => {
+                      if (myrsvp._id==item._id){
+                        return <div>
+                          <Rsvp rsvp={false}/>
+                    </div>}
+                    }
+                  ) && <Rsvp rsvp={false}/>
+                  }
                 {/*
                     
                       mycomments.map((myitem, i) => {

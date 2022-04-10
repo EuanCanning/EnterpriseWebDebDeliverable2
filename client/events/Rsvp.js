@@ -35,6 +35,12 @@ export default function Rsvp(props) {
 
   const handleChange = checked => event => {
     setValues({ ...values, [checked]: event.target.value})
+    if (values.rsvp == true){
+
+    }
+    else if (values.rsvp == false){
+      
+    }
   }
   
   
