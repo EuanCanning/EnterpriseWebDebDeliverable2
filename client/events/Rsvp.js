@@ -28,7 +28,6 @@ const useStyles = makeStyles(theme => ({
 export default function Rsvp(props) {
   
   const classes = useStyles()
-  const [open, setOpen] = useState(false)
   const [values, setValues] = useState({
     rsvp: props.rsvp,
   })
@@ -36,12 +35,6 @@ export default function Rsvp(props) {
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.value})
     console.log(values.rsvp)
-    if (values.rsvp == true){
-      
-    }
-    else if (values.rsvp == false){
-
-    }
   }
   
   
