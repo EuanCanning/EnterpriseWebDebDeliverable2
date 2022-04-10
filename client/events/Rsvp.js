@@ -31,6 +31,8 @@ export default function Rsvp(props) {
   const classes = useStyles()
   const [values, setValues] = useState({
     rsvp : props.rsvp,
+  })
+  const [passthrough, setPassthrough] = useState({
     userId : props.userId,
     eventId : props.userId,
   })
@@ -41,8 +43,8 @@ export default function Rsvp(props) {
     console.log(values.rsvp)
     if (values.rsvp==true){
       userrsvp({
-        userId: values.userId,
-        eventId: values.eventId
+        userId: passthrough.userId,
+        eventId: passthrough.eventId
       }, {t: jwt.token}).then((data) => {
         if (data && data.error) {
           console.log(data.error)
@@ -81,7 +83,7 @@ export default function Rsvp(props) {
 }
 Rsvp.propTypes = {
   rsvp: PropTypes.bool,
-  userId: PropTypes.string,
-  eventId: PropTypes.string
+  userId: PropTypes.string.isRequired,
+  eventId: PropTypes.string.isRequired
 }
 
