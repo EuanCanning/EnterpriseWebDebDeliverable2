@@ -30,11 +30,11 @@ export default function Rsvp(props) {
   const classes = useStyles()
   const [open, setOpen] = useState(false)
   const [values, setValues] = useState({
-    rsvp: '',
+    rsvp: props.rsvp,
   })
 
   const handleChange = checked => event => {
-    setValues({ ...values, [checked]: event.target.value})
+    setValues({ ...values, [rsvp]: event.target.value})
     console.log(values.rsvp)
     if (values.rsvp == true){
       
