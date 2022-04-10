@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Events() {
   const classes = useStyles()
-  const [comments, setComments] = useState([])
+  const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
 
   useEffect(() => {
@@ -42,21 +42,23 @@ export default function Events() {
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
 
-    list({t: jwt.token}, signal).then((data) => {
-      if (data && data.error) {
-        console.log(data.error)
-      } else {
-        setComments(data)
-      }
-    })
-
-    userRsvps({
-      userId: auth.isAuthenticated().user._id 
+    list({
+      userId: match.params.userId
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setMycomments(data)
+        setEvents(data)
+      }
+    })
+
+    userRsvps({
+      userId: match.params.userId 
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setMyrsvps(data)
       }
     })
 
@@ -70,18 +72,16 @@ export default function Events() {
       <div>
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
-          Comments
+          Events
         </Typography>
         <List>
-         {comments.map((item, i) => {
+         {events.map((item, i) => {
           return <ListItem>
-                  <Link to={"/comments/" + item._id} key={i}>
                   <ListItem Button> 
-                  <ListItemText primary={item.name} secondary={item.comment}/>
+                  <ListItemText primary={item.eventName} secondary={item.description}/>
                   </ListItem> 
-                  </Link>
                   <ListItemSecondaryAction>
-                  {
+                  {/*
                       
                         mycomments.map((myitem, i) => {
                           if (myitem._id==item._id){
@@ -92,7 +92,7 @@ export default function Events() {
                         }
                       )
                       
-                    }
+                      */}
                   </ListItemSecondaryAction>
                 </ListItem>
                     
