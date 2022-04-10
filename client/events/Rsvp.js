@@ -27,20 +27,25 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Rsvp(props) {
-  
+  console.log(1)
+  console.log(props.userId)
+  console.log(passthrough.eventId)
   const classes = useStyles()
   const [values, setValues] = useState({
     rsvp : props.rsvp,
   })
   const [passthrough, setPassthrough] = useState({
     userId : props.userId,
-    eventId : props.userId,
+    eventId : props.eventId,
   })
   const jwt = auth.isAuthenticated()
 
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.checked})
     console.log(values.rsvp)
+    console.log(2)
+    console.log(passthrough.userId)
+    console.log(passthrough.eventId)
     if (values.rsvp==true){
       userrsvp({
         userId: passthrough.userId,
