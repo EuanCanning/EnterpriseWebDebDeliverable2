@@ -49,10 +49,10 @@ export default function Rsvp(props) {
     return (<div>
       <ListItemText primary={'RSVP'} className={classes.description}/>
       {props.rsvp &&
-        <Checkbox checked={values.checked} onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
+        <Checkbox checked={values.checked} defaultChecked onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
       }
       {!props.rsvp &&
-        <Checkbox checked={values.checked} defaultChecked onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
+        <Checkbox checked={values.checked} onClick={handleChange} inputProps={{ 'aria-label': 'controlled'}}/>
       }
     </div>)
 
