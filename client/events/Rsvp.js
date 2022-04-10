@@ -11,6 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import auth from '../auth/auth-helper'
 import {Redirect} from 'react-router-dom'
 import Checkbox from '@mui/material/Checkbox'
+import { makeStyles } from '@material-ui/core/styles'
 
 
 const useStyles = makeStyles(theme => ({
