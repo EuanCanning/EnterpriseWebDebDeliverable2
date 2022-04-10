@@ -73,7 +73,7 @@ export default function Events({ match }) {
     })
 
     userRsvps({
-      userId: match.params.userId 
+      userId: match.params.userId
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)

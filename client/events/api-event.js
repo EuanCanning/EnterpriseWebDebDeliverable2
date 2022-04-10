@@ -115,8 +115,9 @@ const unrsvp = async (params, credentials) => {
   }
 }
 
-const userRsvps = async (params,credentials, signal) => {
+const userRsvps = async (params, credentials, signal) => {
   try {
+    console.log('api/rsvps/' + params.userId)
     let response = await fetch('api/rsvps/' + params.userId, {
       method: 'GET',
       signal: signal,
