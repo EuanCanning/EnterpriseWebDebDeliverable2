@@ -130,7 +130,9 @@ export default function Events({ match }) {
               </ListItem>   
                 <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={'Date: ' + item.eventStartTime} className={classes.description}/>
+                  <ListItemText primary={'Date: ' + item.eventStartTime.substring(0, 10) 
+                  + '   Start Time: ' + item.eventStartTime.substring(11, 16) 
+                  + '   End Time: ' + item.eventEndTime.substring(11, 16)} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
                 
