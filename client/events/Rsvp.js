@@ -48,7 +48,7 @@ export default function Rsvp(props) {
     console.log(passthrough.userId)
     console.log(passthrough.eventId)
     if (values.rsvp==true){
-      userrsvp({
+      userunrsvp({
         userId: passthrough.userId,
         eventId: passthrough.eventId
       }, {t: jwt.token}).then((data) => {
@@ -59,7 +59,7 @@ export default function Rsvp(props) {
       })
     }
     else if (values.rsvp==false){
-      userunrsvp({
+      userrsvp({
         userId: passthrough.userId,
         eventId: passthrough.eventId
       }, {t: jwt.token}).then((data) => {
