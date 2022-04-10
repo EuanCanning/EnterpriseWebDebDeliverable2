@@ -23,6 +23,7 @@ import Edit from '@material-ui/icons/Edit'
 import myImg from './../assets/images/myimage.png'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
+import Rsvp from './Rsvp.js'
 
  
 const useStyles = makeStyles(theme => ({
@@ -113,7 +114,7 @@ export default function Events({ match }) {
                 <ListItemText primary={item.description} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
-                
+                  <Rsvp/>
                 {/*
                     
                       mycomments.map((myitem, i) => {

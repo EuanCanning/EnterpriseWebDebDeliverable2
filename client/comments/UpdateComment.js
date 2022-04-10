@@ -75,7 +75,7 @@ export default function UpdateComment(props) {
       </IconButton>
 
       <Dialog open={open} onClose={handleRequestClose}>
-        <DialogTitle>{"Edit Account"}</DialogTitle>
+        <DialogTitle>{"Edit Comment"}</DialogTitle>
         <DialogContent>
           <TextArea id="comment" label="Edit Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
             {
