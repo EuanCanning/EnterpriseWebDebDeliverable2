@@ -88,8 +88,9 @@ export default function Events({ match }) {
          {events.map((item, i) => {
           return <Paper className={classes.root} elevation={4}>
             <container>
-            <Col sm={8}>
-                <List>
+              <Row>
+                <Col sm={8}>
+                  <List>
                     <ListItem>
                       <ListItem Button> 
                       <ListItemText primary={item.eventName} className={classes.title2}/>
@@ -120,7 +121,8 @@ export default function Events({ match }) {
                     
                   </List>
                 </Col>
-              <Col sm={4}>test</Col>
+                <Col sm={4}>test</Col>
+              </Row>
             </container>  
           </Paper>
                })
