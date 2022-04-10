@@ -28,7 +28,9 @@ const useStyles = makeStyles(theme => ({
 export default function Rsvp(props) {
   
   const classes = useStyles()
-  const [values, setValues] = useState({})
+  const [values, setValues] = useState({
+    rsvp = ''
+  })
 
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.value})
