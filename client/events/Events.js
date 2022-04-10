@@ -24,12 +24,17 @@ import Edit from '@material-ui/icons/Edit'
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
     padding: theme.spacing(1),
-    margin: theme.spacing(5)
+    margin: theme.spacing(3)
   }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
-    fontSize: 12,
+  },
+  title2: {
+    fontSize:16,
+  },
+  description: {
+    fontSize:13,
   }
 }))
 
@@ -75,11 +80,24 @@ export default function Events({ match }) {
         <Typography variant="h6" className={classes.title}>
           Events
         </Typography>
-        <List>
+        
+      
+      </Paper>
+        
          {events.map((item, i) => {
-          return <ListItem>
+          return <Paper className={classes.root} elevation={4}>
+            <List>
+                <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={item.eventName} secondary={item.description}/>
+                  <ListItemText primary={item.eventName} className={classes.title2}/>
+                  </ListItem> 
+                  <ListItemSecondaryAction>
+                  
+                  </ListItemSecondaryAction>
+                </ListItem>
+                <ListItem>
+                  <ListItem Button> 
+                  <ListItemText primary={item.description} className={classes.description}/>
                   </ListItem> 
                   <ListItemSecondaryAction>
                   {/*
@@ -95,13 +113,13 @@ export default function Events({ match }) {
                       
                       */}
                   </ListItemSecondaryAction>
-                </ListItem>
-                    
+                </ListItem>    
                  
+              </List>
+              
+          </Paper>
                })
              }
-        </List>
-      </Paper>
       
       {/* <AddComment/> ╌> */}
       </div>
