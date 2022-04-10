@@ -20,6 +20,7 @@ import auth from '../auth/auth-helper'
 import Edit from '@material-ui/icons/Edit' 
 //import DeleteComment from './DeleteComment.js'
 //import UpdateComment from './UpdateComment.js'
+import {Container, Row, Col} from 'react-bootstrap'
  
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -86,37 +87,41 @@ export default function Events({ match }) {
         
          {events.map((item, i) => {
           return <Paper className={classes.root} elevation={4}>
-            <List>
-                <ListItem>
-                  <ListItem Button> 
-                  <ListItemText primary={item.eventName} className={classes.title2}/>
-                  </ListItem> 
-                  <ListItemSecondaryAction>
-                  
-                  </ListItemSecondaryAction>
-                </ListItem>
-                <ListItem>
-                  <ListItem Button> 
-                  <ListItemText primary={item.description} className={classes.description}/>
-                  </ListItem> 
-                  <ListItemSecondaryAction>
-                  {/*
+            <container>
+            <Col sm={8}>
+                <List>
+                    <ListItem>
+                      <ListItem Button> 
+                      <ListItemText primary={item.eventName} className={classes.title2}/>
+                      </ListItem> 
+                      <ListItemSecondaryAction>
                       
-                        mycomments.map((myitem, i) => {
-                          if (myitem._id==item._id){
-                            return <div>
-                              <UpdateComment commentId={item._id} comment={item.comment}/>
-                              <DeleteComment commentId={item._id}/>
-                        </div>}
-                        }
-                      )
-                      
-                      */}
-                  </ListItemSecondaryAction>
-                </ListItem>    
-                 
-              </List>
-              
+                      </ListItemSecondaryAction>
+                    </ListItem>
+                    <ListItem>
+                      <ListItem Button> 
+                      <ListItemText primary={item.description} className={classes.description}/>
+                      </ListItem> 
+                      <ListItemSecondaryAction>
+                      {/*
+                          
+                            mycomments.map((myitem, i) => {
+                              if (myitem._id==item._id){
+                                return <div>
+                                  <UpdateComment commentId={item._id} comment={item.comment}/>
+                                  <DeleteComment commentId={item._id}/>
+                            </div>}
+                            }
+                          )
+                          
+                          */}
+                      </ListItemSecondaryAction>
+                    </ListItem>    
+                    
+                  </List>
+                </Col>
+              <Col sm={4}>test</Col>
+            </container>  
           </Paper>
                })
              }
