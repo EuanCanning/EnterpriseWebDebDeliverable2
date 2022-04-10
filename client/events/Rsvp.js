@@ -30,7 +30,9 @@ export default function Rsvp(props) {
   
   const classes = useStyles()
   const [values, setValues] = useState({
-    rsvp : props.rsvp
+    rsvp : props.rsvp,
+    userId : props.userId,
+    eventId : props.userId,
   })
   const jwt = auth.isAuthenticated()
 
@@ -39,8 +41,8 @@ export default function Rsvp(props) {
     console.log(values.rsvp)
     if (values.rsvp==true){
       userrsvp({
-        userId: props.userId,
-        eventId:props.eventId
+        userId: values.userId,
+        eventId: values.eventId
       }, {t: jwt.token}).then((data) => {
         if (data && data.error) {
           console.log(data.error)
@@ -51,8 +53,8 @@ export default function Rsvp(props) {
     }
     else if (values.rsvp==false){
       userunrsvp({
-        userId: props.userId,
-        eventId:props.eventId
+        userId: values.userId,
+        eventId:values.eventId
       }, {t: jwt.token}).then((data) => {
         if (data && data.error) {
           console.log(data.error)
