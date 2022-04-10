@@ -32,7 +32,7 @@ export default function Rsvp(props) {
   const [values, setValues] = useState({
     rsvp : props.rsvp,
   })
-  const [passthrough, setPassthrough] = useState({
+  const [passthrough] = useState({
     userId : props.userId,
     eventId : props.userId,
   })
