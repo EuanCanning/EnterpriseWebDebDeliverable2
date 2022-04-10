@@ -72,9 +72,12 @@ export default function Events({ match }) {
       }
     })
 
+    const abortController2 = new AbortController()
+    const signal2 = abortController2.signal
+    const jwt2 = auth.isAuthenticated()
     userRsvps({
       userId: match.params.userId
-    },{t: jwt.token}, signal).then((data) => {
+    },{t: jwt2.token}, signal2).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
