@@ -28,9 +28,7 @@ const useStyles = makeStyles(theme => ({
 export default function Rsvp(props) {
   
   const classes = useStyles()
-  const [values, setValues] = useState({
-    rsvp: props.rsvp,
-  })
+  const [values, setValues] = useState({})
 
   const handleChange = rsvp => event => {
     setValues({ ...values, [rsvp]: event.target.value})
@@ -38,9 +36,9 @@ export default function Rsvp(props) {
   }
   
   
-
   
-    return (<div>
+  
+    return (<div> 
       <ListItemText primary={'RSVP'} className={classes.description}/>
       {props.rsvp &&
         <Checkbox checked={values.rsvp} defaultChecked onChange={handleChange('rsvp')} inputProps={{ 'aria-label': 'controlled'}}/>
