@@ -137,7 +137,7 @@ export default function Events({ match }) {
                       if (myrsvp.eventID==item._id){
                         return true}
                     }
-                  ) && <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>
+                  ) && <Rsvp rsvp={false} userId={match.params.userId} eventId={item._id}/>
                   }
                 
                 </ListItemSecondaryAction>
