@@ -81,7 +81,9 @@ export default function Events({ match }) {
       if (data && data.error) {
         console.log(data.error)
       } else {
+        
         setValues({ ...values, [isAdmin]: true})
+        console.log('is admin = ' + values.isAdmin)
       }
     })
 
