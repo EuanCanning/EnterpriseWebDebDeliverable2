@@ -57,7 +57,7 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-  let isAdmin = false
+  let isAdminbool = false
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -80,7 +80,7 @@ export default function Events({ match }) {
         console.log(data.error)
       } else {
         
-        isAdmin = true
+        isAdminbool = true
         console.log('is admin = ' + isAdmin)
       }
     })
@@ -126,7 +126,7 @@ export default function Events({ match }) {
                 </ListItem> 
                 <ListItemSecondaryAction>
                   {
-                    isAdmin==true && 
+                    isAdminbool==true && 
                     <DeleteComment eventId={item._id} userId={match.params.userId}/>
                   }
                 </ListItemSecondaryAction>
