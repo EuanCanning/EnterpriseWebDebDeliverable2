@@ -60,7 +60,7 @@ export default function DeleteEvent(props) {
     </span>)
 
 }
-DeleteComment.propTypes = {
+DeleteEvent.propTypes = {
   eventId: PropTypes.string.isRequired,
   userId: PropTypes.string.isRequired
 }
