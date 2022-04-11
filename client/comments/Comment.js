@@ -112,6 +112,27 @@ export default function Comments({match},props) {
           <ListItem Button> 
           <ListItemText primary={comment.name + '    Likes: ' + comment.likes} secondary={comment.comment}/>
           </ListItem> 
+          <ListItemSecondaryAction>
+          {
+            mylikes.map((mylike, i) => {
+              console.log(mylike.commentID)
+              console.log(item._id)
+              if (mylike.commentID==item._id){
+                return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+            }
+            }
+          )
+            
+          
+          }
+          {
+            !mylikes.find((mylike) => {
+              if (mylike.commentID==item._id){
+                return true}
+            }
+          ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+          }
+          </ListItemSecondaryAction>
         </ListItem>
         </List>
       </Paper>
