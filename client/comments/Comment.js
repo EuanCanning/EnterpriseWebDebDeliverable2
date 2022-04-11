@@ -94,18 +94,6 @@ export default function Comments({match},props) {
           <ListItemText primary={comment.name} secondary={comment.comment}/>
           </ListItem> 
           <ListItemSecondaryAction>
-          {
-              
-                mycomments.map((myitem, i) => {
-                  if (myitem._id==item._id){
-                    return <div>
-                      <UpdateComment commentId={item._id} comment={item.comment}/>
-                      <DeleteComment commentId={item._id}/>
-                </div>}
-                }
-              )
-              
-            }
           </ListItemSecondaryAction>
         </ListItem>
         </List>
