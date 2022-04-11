@@ -22,6 +22,8 @@ import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
  
 const useStyles = makeStyles(theme => ({
+  root: theme.mixins.gutters({
+  }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
