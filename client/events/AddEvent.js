@@ -85,7 +85,16 @@ export default function AddEvent() {
             <TextArea id="description" label="Description" className={classes.textArea} value={values.description} onChange={handleChange('description')} margin="normal"/>
           </ListItem>
           <ListItem>
-            <TextArea id="eventStartTime" label="Start Time" className={classes.textArea} value={values.eventStartTime} onChange={handleChange('eventStartTime')} margin="normal"/>
+            <LocalizationProvider dateAdapter={AdapterDateFns}>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props} />}
+                label="StartTime"
+                value={values.eventStartTime}
+                onChange={handleChange('eventStartTime')}
+                margin="normal"
+              />
+            </LocalizationProvider>
+            
           </ListItem>
           <ListItem>
             <TextArea id="eventEndTime" label="End Time" className={classes.textArea} value={values.eventEndTime} onChange={handleChange('eventEndTime')} margin="normal"/>
