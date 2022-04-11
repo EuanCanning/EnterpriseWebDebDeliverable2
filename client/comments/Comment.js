@@ -98,7 +98,7 @@ export default function Comments({match},props) {
         </ListItem>
         </List>
       </Paper>
-      <Paper>
+      <Paper className={classes.root} elevation={4}>
         <List>
          {comments.map((item, i) => {
           return <ListItem>
