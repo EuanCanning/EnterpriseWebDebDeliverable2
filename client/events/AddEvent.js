@@ -91,8 +91,10 @@ export default function AddEvent() {
                 renderInput={(props) => <TextField {...props} />}
                 label="StartTime"
                 value={values.eventStartTime}
-                onChange={handleChange('eventStartTime')}
-                margin="normal"
+                onChange={(newValue => {
+                  setValues({ ...values, eventStartTime: newValue})
+                })}
+                margin="auto"
               />
             </LocalizationProvider>
             
