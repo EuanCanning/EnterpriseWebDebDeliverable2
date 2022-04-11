@@ -20,6 +20,7 @@ import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
 import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
+import Like from './Likes'
  
 const useStyles = makeStyles(theme => ({
   title: {
@@ -36,6 +37,7 @@ export default function Comments() {
   const classes = useStyles()
   const [comments, setComments] = useState([])
   const [mycomments, setMycomments] = useState([])
+  const [mylikes, setMylikes] = useState([])
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -57,6 +59,18 @@ export default function Comments() {
         console.log(data.error)
       } else {
         setMycomments(data)
+      }
+    })
+
+    userLikes({
+      userId: auth.isAuthenticated().user._id
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        console.log('hi')
+        console.log(data)
+        setMylikes(data)
       }
     })
 
@@ -93,6 +107,26 @@ export default function Comments() {
                       )
                       
                     }
+                    {
+                      mylikes.map((mylike, i) => {
+                        console.log(mylike.commentID)
+                        console.log(item._id)
+                        if (mylike.commentID==item._id){
+                          return <div>
+                            <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+                      </div>}
+                      }
+                    )
+                      
+                    
+                  }
+                  {
+                    !mylikes.find((mylike) => {
+                      if (mylike.commentID==item._id){
+                        return true}
+                    }
+                  ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+                  }
                   </ListItemSecondaryAction>
                 </ListItem>
                     

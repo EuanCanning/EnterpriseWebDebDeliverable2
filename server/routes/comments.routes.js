@@ -22,6 +22,14 @@ router.route('/api/comment/replies/:commentId/:userId')
 router.route('/api/comments/user/:userId')
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.commentsByUserID)
 
+  router.route('/api/like/:userId/:commentId')
+  .put(authCtrl.requireSignin,authCtrl.hasAuthorization, commentCtrl.likeUser, commentCtrl.like)
+router.route('/api/unlike/:userId/:commentId') 
+  .put(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.unlikeUser, commentCtrl.unlike)
+
+router.route('/api/likes/:userId')
+  .get(authCtrl.requireSignin,authCtrl.hasAuthorization, commentCtrl.likes)
+
 
 router.param('commentId', commentCtrl.commentByID)
 router.param('userId', userCtrl.userByID)

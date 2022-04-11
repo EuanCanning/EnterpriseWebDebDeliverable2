@@ -1,6 +1,7 @@
 import Comment from '../models/comments.model'
 import extend from 'lodash/extend'
 import errorHandler from './../helpers/dbErrorHandler'
+import Like from '../models/likes.model'
 
 const create = async (req, res) => {
   const comment = new Comment(req.body)
@@ -121,6 +122,112 @@ const remove = async (req, res) => {
   }
 }
 
+const like = async (req, res) => {
+  try{
+    let comment = req.comment
+    console.log(comment)
+    comment.likes = comment.likes + 1
+    console.log(comment.likes)
+    console.log(comment)
+    await comment.save()
+  res.json(comment)
+  } catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const unlike = async (req, res) => {
+  try{
+    let comment = req.comment
+    comment.likes = comment.likes - 1
+    await comment.save()
+  res.json(comment)
+  } catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
+const likeUser = async (req,res,next) => {
+  try{
+    let userId = req.profile._id
+    console.log(userId)
+    let commentId = req.comment._id
+    console.log(commentId)
+    let likes = await Like.find({userID : userId, commentID : commentId}).select('userID commentID')
+    console.log(likes)
+    if (likes.length != 0) {
+      return res.status('400').json({
+        error: "like has already been confirmed"
+      })
+    
+    }
+    const like = new Like();
+    like.userID = req.profile._id;
+    like.commentID = req.comment._id  
+    like.save()
+    next()
+        
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
+const unlikeUser = async (req,res,next) => {
+  try{
+    let userId = req.profile._id
+    console.log(userId)
+    let commentId = req.comment._id
+    console.log(commentId)
+    let likes = await Like.find({userID : userId, commentID : commentId}).select('userID commentID')
+    console.log(likes)
+    if (likes.length == 0) {
+      return res.status('400').json({
+        error: "like has not been confirmed"
+      })
+    
+    }
+    const like = new Like(likes[0])
+    await like.remove()
+    next()
+        
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
+
+const likes = async (req,res) => {
+  try{
+    let userId = req.profile._id
+    console.log(userId)
+    let commentIDs = await Like.find({userID : userId}).select('commentID')
+    console.log(commentIDs)
+    if (commentIDs.length == 0) {
+      return res.status('400').json({
+        error: "likes do not exist"
+      })
+    
+    }
+    
+    res.json(commentIDs)   
+  }catch (err){
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+
+}
+
 
 export default {
   create,
@@ -131,5 +238,11 @@ export default {
   list,
   listReplies,
   remove,
-  update
+  update,
+  like,
+  unlike,
+  likeUser,
+  unlikeUser,
+  likes
+
 }
