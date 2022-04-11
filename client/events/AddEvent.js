@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     margin: 'auto',
-    height: 100,
+    height: 200,
     width: 500
   },
   submit: {
@@ -93,7 +93,7 @@ export default function AddEvent() {
           <ListItem>
             <LocalizationProvider dateAdapter={AdapterDateFns} className={classes.textField}>
               <DateTimePicker
-                renderInput={(props) => <TextField {...props} />}
+                renderInput={(props) => <TextField {...props}  className={classes.textField}/>}
                 label="StartTime"
                 value={values.eventStartTime}
                 onChange={(newValue => {
