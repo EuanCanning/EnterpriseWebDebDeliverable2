@@ -25,6 +25,7 @@ import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import Rsvp from './Rsvp.js'
 import DeleteEvent from './DeleteEvent.js'
+import AddEvent from './AddEvent.js'
 
  
 const useStyles = makeStyles(theme => ({
@@ -175,7 +176,7 @@ export default function Events({ match }) {
                })
              }
       
-      {/* <AddComment/> ╌> */}
+      {userisadmin && <AddEvent/> }
       </div>
     )
 }
