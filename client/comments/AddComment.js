@@ -19,7 +19,7 @@ import {Redirect} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
+  root2: theme.mixins.gutters({
     padding: theme.spacing(1),
     margin: theme.spacing(5)
   }),
@@ -75,7 +75,7 @@ export default function AddComment(props) {
   
   
     return (<div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.root2} elevation={4}>
         <List>
           <ListItem>
             <TextArea id="comment" label="Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
