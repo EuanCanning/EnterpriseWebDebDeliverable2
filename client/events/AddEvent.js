@@ -39,7 +39,8 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     height: 100,
     width: 500,
-    fontSize:12
+    fontSize:12,
+    padding: 10,
   },
   submit: {
     margin: 'auto'
