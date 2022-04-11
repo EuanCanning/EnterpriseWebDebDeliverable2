@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {listReplies,repliesByUserId,read} from './api-comment.js'
+import {listReplies,repliesByUserId,read,userLikes} from './api-comment.js'
 import auth from '../auth/auth-helper'
 import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
@@ -38,6 +38,8 @@ export default function Comments({match},props) {
   const [comment, setComment] = useState([])
   const [comments, setComments] = useState([])
   const [mycomments, setMycomments] = useState([])
+  const [mylikes, setMylikes] = useState([])
+  
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -62,6 +64,18 @@ export default function Comments({match},props) {
         console.log(data.error)
       } else {
         setComment(data)
+      }
+    })
+
+    userLikes({
+      userId: auth.isAuthenticated().user._id
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        console.log('hi')
+        console.log(data)
+        setMylikes(data)
       }
     })
 
@@ -99,6 +113,9 @@ export default function Comments({match},props) {
         </List>
       </Paper>
       <Paper className={classes.root} elevation={4}>
+      <Typography variant="h6" className={classes.title}>
+          Replies
+        </Typography>
         <List>
          {comments.map((item, i) => {
           return <ListItem>
@@ -108,16 +125,44 @@ export default function Comments({match},props) {
                   <ListItemSecondaryAction>
                   {
                       
-                        mycomments.map((myitem, i) => {
-                          if (myitem._id==item._id){
-                            return <div>
-                              <UpdateComment commentId={item._id} comment={item.comment}/>
-                              <DeleteComment commentId={item._id}/>
-                        </div>}
-                        }
-                      )
+                      mycomments.map((myitem, i) => {
+                        if (myitem._id==item._id){
+                          return <DeleteComment commentId={item._id}/>}
+                      }
                       
+                    )
+                    
+                  }
+
+{
+                    
+                    mycomments.map((myitem, i) => {
+                      if (myitem._id==item._id){
+                        return <UpdateComment commentId={item._id} comment={item.comment}/>}
                     }
+                    
+                  )
+                  
+                }
+                {
+                      mylikes.map((mylike, i) => {
+                        console.log(mylike.commentID)
+                        console.log(item._id)
+                        if (mylike.commentID==item._id){
+                          return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+                      }
+                      }
+                    )
+                      
+                    
+                  }
+                  {
+                    !mylikes.find((mylike) => {
+                      if (mylike.commentID==item._id){
+                        return true}
+                    }
+                  ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+                  }
                   </ListItemSecondaryAction>
                 </ListItem>
                     
