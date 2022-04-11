@@ -37,8 +37,9 @@ const useStyles = makeStyles(theme => ({
   },
   textField: {
     margin: 'auto',
-    height: 200,
-    width: 500
+    height: 100,
+    width: 500,
+    fontSize:12
   },
   submit: {
     margin: 'auto'
