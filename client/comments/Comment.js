@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Comments() {
+export default function Comments({match}) {
   const classes = useStyles()
   const [comment, setComment] = useState([])
   const [comments, setComments] = useState([])
