@@ -101,16 +101,19 @@ const hasAdminAuthorization = (req, res, next) => {
 }
 
 
-const hasAdminEventAuthorization = (req, res, next) => {
+const isAdmin = (req, res) => {
   
 console.log(req.auth.admin)
-  const authorized = req.auth.admin
-  if (!(authorized)) {
-    return res.status('403').json({
-      error: "User is not authorized for admin"
-    })
-  }
-  next()
+  
+const authorized = req.profile && req.auth && req.profile._id == req.auth._id && req.profile.admin == true
+if (!(authorized)) {
+  return res.status('403').json({
+    error: "User is not authorized for admin"
+  })
+}
+
+
+return res.json(req.profile)
 }
 
 
@@ -121,5 +124,6 @@ export default {
   hasCommentAuthorization,
   hasAuthorization,
   hasAdminAuthorization,
-  hasAdminEventAuthorization
+  hasAdminEventAuthorization,
+  isAdmin
 }

@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list,userRsvps} from './api-event.js'
+import {list,userRsvps,isAdmin} from './api-event.js'
 import auth from '../auth/auth-helper'
 //import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
@@ -57,6 +57,9 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
+  const [values, setValues] = useState({
+    isAdmin : false,
+  })
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -72,12 +75,19 @@ export default function Events({ match }) {
       }
     })
 
-    const abortController2 = new AbortController()
-    const signal2 = abortController2.signal
-    const jwt2 = auth.isAuthenticated()
+    isAdmin({
+      userId: match.params.userId
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setValues({ ...values, [isAdmin]: true})
+      }
+    })
+
     userRsvps({
       userId: match.params.userId
-    },{t: jwt2.token}, signal2).then((data) => {
+    },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
@@ -86,6 +96,20 @@ export default function Events({ match }) {
         setMyrsvps(data)
       }
     })
+
+    isAdmin({
+      userId: match.params.userId
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        console.log('hi')
+        console.log(data)
+        setMyrsvps(data)
+      }
+    })
+
+    
 
     return function cleanup(){
       abortController.abort()
@@ -111,7 +135,10 @@ export default function Events({ match }) {
                 <ListItemText primary={item.eventName} className={classes.title2}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
-                
+                  {
+                    values.isAdmin==true && 
+                    <DeleteComment eventId={item._id} userId={match.params.userId}/>
+                  }
                 </ListItemSecondaryAction>
               </ListItem>
               <ListItem>

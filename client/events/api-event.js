@@ -131,6 +131,23 @@ const userRsvps = async (params, credentials, signal) => {
     console.log(err)
   }
 }
+
+const isAdmin = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/auth/admin/' + params.userId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
     
 
 export {
@@ -141,5 +158,6 @@ export {
   remove,
   userrsvp,
   userunrsvp,
-  userRsvps
+  userRsvps,
+  isAdmin
 }
