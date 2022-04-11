@@ -59,7 +59,7 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-  const [userisadmin, setUserisadmin] = useState([])
+  let userisadmin = false
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -82,8 +82,8 @@ export default function Events({ match }) {
         console.log(data.error)
       } else {
         
-        setUserisadmin(true)
-        console.log('is admin = ' + userisadmin)
+        userisadmin = true
+        console.log('is admin = ' + true)
       }
     })
 
