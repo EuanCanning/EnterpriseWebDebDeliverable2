@@ -68,7 +68,7 @@ export default function Comments() {
 
     return (
       <div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Comments
         </Typography>
