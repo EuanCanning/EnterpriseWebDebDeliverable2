@@ -101,22 +101,30 @@ export default function Comments() {
                       
                         mycomments.map((myitem, i) => {
                           if (myitem._id==item._id){
-                            return <span>
-                              <UpdateComment commentId={item._id} comment={item.comment}/>
-                              <DeleteComment commentId={item._id}/>
-                        </span>}
+                            return <DeleteComment commentId={item._id}/>}
                         }
+                        
                       )
                       
                     }
+
+{
+                      
+                      mycomments.map((myitem, i) => {
+                        if (myitem._id==item._id){
+                          return <UpdateComment commentId={item._id} comment={item.comment}/>}
+                      }
+                      
+                    )
+                    
+                  }
                     {
                       mylikes.map((mylike, i) => {
                         console.log(mylike.commentID)
                         console.log(item._id)
                         if (mylike.commentID==item._id){
-                          return <div>
-                            <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
-                      </div>}
+                          return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+                      }
                       }
                     )
                       
