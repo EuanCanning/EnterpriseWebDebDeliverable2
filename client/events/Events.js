@@ -140,7 +140,7 @@ export default function Events({ match }) {
                     <DeleteComment eventId={item._id} userId={match.params.userId}/>
                   }
                 </ListItemSecondaryAction>
-              </ListItem>
+              </ListItem> 
               <ListItem>
                 <ListItem Button> 
                 <ListItemText primary={item.description} className={classes.description}/>
