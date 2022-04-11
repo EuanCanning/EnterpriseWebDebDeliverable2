@@ -124,6 +124,5 @@ export default {
   hasCommentAuthorization,
   hasAuthorization,
   hasAdminAuthorization,
-  hasAdminEventAuthorization,
   isAdmin
 }
