@@ -48,8 +48,8 @@ export default function AddEvent() {
     error: ''
   })
 
-  const handleChange = eventName => description => eventStartTime => eventEndTime => event => {
-    setValues({ ...values, [eventName,description,eventStartTime,eventEndTime]: event.target.value})
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value})
   }
 
   const clickSubmit = () => {
