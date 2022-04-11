@@ -59,11 +59,12 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-  let userisadmin = false
+  const [userisadmin, setUserisadmin] = useState([])
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
+    setUserisadmin(false)
 
     list({
       userId: match.params.userId
@@ -82,8 +83,8 @@ export default function Events({ match }) {
         console.log(data.error)
       } else {
         
-        userisadmin = true
-        console.log('is admin = ' + true)
+        setUserisadmin(true)
+        console.log('is admin = ' + userisadmin)
       }
     })
 
