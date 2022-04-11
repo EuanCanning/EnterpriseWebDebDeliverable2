@@ -16,6 +16,9 @@ import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import {Redirect} from 'react-router-dom'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -77,8 +80,14 @@ export default function AddEvent() {
         <List>
           <ListItem>
             <TextArea id="eventName" label="Event Name" className={classes.textArea} value={values.eventName} onChange={handleChange('eventName')} margin="normal"/>
+          </ListItem>
+          <ListItem>
             <TextArea id="description" label="Description" className={classes.textArea} value={values.description} onChange={handleChange('description')} margin="normal"/>
+          </ListItem>
+          <ListItem>
             <TextArea id="eventStartTime" label="Start Time" className={classes.textArea} value={values.eventStartTime} onChange={handleChange('eventStartTime')} margin="normal"/>
+          </ListItem>
+          <ListItem>
             <TextArea id="eventEndTime" label="End Time" className={classes.textArea} value={values.eventEndTime} onChange={handleChange('eventEndTime')} margin="normal"/>
             {
               values.error && (<Typography component="p" color="error">
