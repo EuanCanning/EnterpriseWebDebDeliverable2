@@ -76,6 +76,8 @@ export default function Comments({match}) {
         <Typography variant="h6" className={classes.title}>
           Comment
         </Typography>
+      </Paper>
+      <Paper>
         <List>
          {comments.map((item, i) => {
           return <ListItem>
@@ -107,4 +109,9 @@ export default function Comments({match}) {
       <AddComment reply={true} replyTo={match.params.commentId}/>
       </div>
     )
+}
+
+Comments.propTypes = {
+  comment: PropTypes.bool,
+  name: PropTypes.string.isRequired
 }

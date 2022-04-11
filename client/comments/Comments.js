@@ -99,10 +99,10 @@ export default function Comments() {
                       
                         mycomments.map((myitem, i) => {
                           if (myitem._id==item._id){
-                            return <div>
+                            return <span>
                               <UpdateComment commentId={item._id} comment={item.comment}/>
                               <DeleteComment commentId={item._id}/>
-                        </div>}
+                        </span>}
                         }
                       )
                       
