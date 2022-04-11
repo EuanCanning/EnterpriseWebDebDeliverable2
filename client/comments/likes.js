@@ -14,6 +14,8 @@ import Checkbox from '@mui/material/Checkbox'
 import { makeStyles } from '@material-ui/core/styles'
 import ListItemText from '@material-ui/core/ListItemText'
 import {userlike, userunlike} from './api-comment.js'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import Favorite from '@mui/icons-material/Favorite'
 
 
 const useStyles = makeStyles(theme => ({
@@ -76,7 +78,7 @@ export default function likes(props) {
   
   
   
-    return (<Checkbox checked={values.like} onChange={handleChange('like')} inputProps={{ 'aria-label': 'controlled'}}/>
+    return (<Checkbox checked={values.like} onChange={handleChange('like')} icon={<FavoriteBorder />} checkedIcon={<Favorite />} />
     
     )
 
