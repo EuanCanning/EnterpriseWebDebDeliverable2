@@ -120,6 +120,8 @@ export default function Events({ match }) {
       </Paper>
         
          {events.map((item, i) => {
+           let st = new Date(item.eventStartTime)
+           let et = new Date(item.eventStartTime)
           return <Paper className={classes.root} elevation={4}>
             <List>
               <ListItem>
@@ -162,7 +164,7 @@ export default function Events({ match }) {
               </ListItem>   
                 <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={'Date: ' + Date(item.eventStartTime).getDate() + "/" + Date(item.eventStartTime).getMonth() + + "/" + Date(item.eventStartTime).getFullYear()
+                  <ListItemText primary={'Date: ' + st.getDate() +'/' + st.getMonth() +'/' + st.getFullYear() 
                   + '   Start Time: ' + item.eventStartTime.substring(11, 16) 
                   + '   End Time: ' + item.eventEndTime.substring(11, 16)} className={classes.description}/>
                 </ListItem> 
