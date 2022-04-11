@@ -74,16 +74,14 @@ export default function Comments() {
       <div>
       <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
-          Comments
+          Comment
         </Typography>
         <List>
          {comments.map((item, i) => {
           return <ListItem>
-                  <Link to={"/comments/" + item._id} key={i}>
                   <ListItem Button> 
                   <ListItemText primary={item.name} secondary={item.comment}/>
                   </ListItem> 
-                  </Link>
                   <ListItemSecondaryAction>
                   {
                       
