@@ -14,7 +14,7 @@ import {Redirect} from 'react-router-dom'
 
 export default function DeleteEvent(props) {
   const [open, setOpen] = useState(false)
-
+  console.log('this is loading')
   const jwt = auth.isAuthenticated()
   const clickButton = () => {
     setOpen(true)
