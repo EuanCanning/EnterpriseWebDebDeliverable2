@@ -16,6 +16,7 @@ import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import {Redirect} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
@@ -56,7 +57,9 @@ export default function AddComment() {
     const comment = {
       userId: auth.isAuthenticated().user._id || undefined,
       name: auth.isAuthenticated().user.name || undefined,
-      comment: values.comment || undefined
+      comment: values.comment || undefined,
+      reply: props.reply || undefined,
+      replyTo: props.replyTo || undefined,
     }
     const jwt = auth.isAuthenticated()
     create({t: jwt.token},comment).then((data) => {
@@ -91,4 +94,8 @@ export default function AddComment() {
       
     </div>
     )
+}
+AddComment.propTypes = {
+  reply: PropTypes.bool.isRequired,
+  replyTo: PropTypes.string.isRequired
 }

@@ -14,8 +14,8 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list,listByUserId} from './api-comment.js'
-import auth from './../auth/auth-helper'
+import {listReplies,repliesByUserId} from './api-comment.js'
+import auth from '../auth/auth-helper'
 import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
 import DeleteComment from './DeleteComment.js'
@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Comments() {
   const classes = useStyles()
+  const [comment, setComment] = useState([])
   const [comments, setComments] = useState([])
   const [mycomments, setMycomments] = useState([])
 
@@ -42,7 +43,9 @@ export default function Comments() {
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
 
-    list({t: jwt.token}, signal).then((data) => {
+    listReplies({
+      commentId: match.params.userId
+    },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
@@ -50,7 +53,8 @@ export default function Comments() {
       }
     })
 
-    listByUserId({
+    repliesByUserId({
+      commentId: match.params.userId,
       userId: auth.isAuthenticated().user._id 
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
@@ -102,7 +106,7 @@ export default function Comments() {
         </List>
       </Paper>
       
-      <AddComment reply={false} replyTo={null}/>
+      <AddComment reply={true} replyTo={match.params.commentId}/>
       </div>
     )
 }

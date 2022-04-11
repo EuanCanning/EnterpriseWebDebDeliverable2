@@ -14,6 +14,11 @@ router.route('/api/comments/comment/:commentId')
   .put(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.update)
   .delete(authCtrl.requireSignin, authCtrl.hasCommentAuthorization, commentCtrl.remove)
 
+router.route('api/comments/replies/:commentId')
+  .get(authCtrl.requireSignin,commentCtrl.listReplies)
+router.route('api/comments/replies/:commentId/:userId')
+.get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.repliesByUserID)
+
 router.route('/api/comments/user/:userId')
   .get(authCtrl.requireSignin, authCtrl.hasAuthorization, commentCtrl.commentsByUserID)
 

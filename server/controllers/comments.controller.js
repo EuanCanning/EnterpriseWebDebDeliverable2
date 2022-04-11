@@ -27,12 +27,23 @@ const list = async (req, res) => {
   }
 }
 
+const listReplies = async (req, res) => {
+  try {
+    let comments = await Comment.find({reply : true, replyTo : req.comment._id}).select('_id userId name comment likes created').sort({ created: -1 })
+    res.json(comments)
+  } catch (err) {
+    return res.status(400).json({
+      error: errorHandler.getErrorMessage(err)
+    })
+  }
+}
+
 
 const commentsByUserID = async (req, res) => {
   try {
     let user = req.profile
     
-    let comments = await Comment.find({userId : user._id}).select('_id')
+    let comments = await Comment.find({reply : false, userId : user._id}).select('_id')
     console.log(comments)
     if (!comments)
       return res.status('400').json({
@@ -46,8 +57,26 @@ const commentsByUserID = async (req, res) => {
     }
   }
 
+  const repliesByUserID = async (req, res) => {
+    try {
+      let user = req.profile
+      
+      let comments = await Comment.find({reply : true, replyTo : req.comment._id, userId : user._id}).select('_id')
+      console.log(comments)
+      if (!comments)
+        return res.status('400').json({
+          error: "User or comment not found"
+        })
+      res.json(comments)
+    }catch (err) {
+        return res.status(400).json({
+          error: errorHandler.getErrorMessage(err)
+        })
+      }
+    }
+
   const read = (req, res) => {
-    return res.json(req.profile)
+    return res.json(req.comment)
   }
 
   const commentByID = async (req, res, next, id) => {
@@ -57,7 +86,7 @@ const commentsByUserID = async (req, res) => {
         return res.status('400').json({
           error: "Comment not found"
         })
-      req.profile = comment
+      req.comment = comment
       next()
     } catch (err) {
       return res.status('400').json({
@@ -68,7 +97,7 @@ const commentsByUserID = async (req, res) => {
 
 const update = async (req, res) => {
   try {
-    let comment = req.profile
+    let comment = req.comment
     comment = extend(comment, req.body)
     await comment.save()
     res.json(comment)
@@ -82,7 +111,7 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
   try {
-    let comment = req.profile
+    let comment = req.comment
     let deletedComment = await comment.remove()
     res.json(deletedComment)
   } catch (err) {
@@ -96,9 +125,11 @@ const remove = async (req, res) => {
 export default {
   create,
   commentsByUserID,
+  repliesByUserID,
   commentByID,
   read,
   list,
+  listReplies,
   remove,
   update
 }

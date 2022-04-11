@@ -32,7 +32,39 @@ const list = async (credentials, signal) => {
   }
 }
 
+const listReplies = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/comments/replies/' + params.commentId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
 
+const repliesByUserId = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/comments/replies/' + params.commentId + '/' + params.userId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
 
 const read = async (params, credentials, signal) => {
   try {
@@ -104,10 +136,12 @@ const listByUserId = async (params, credentials, signal) => {
 export {
   create,
   list,
+  listReplies,
   read,
   update,
   remove,
-  listByUserId
+  listByUserId,
+  repliesByUserId
 }
 
 
