@@ -21,6 +21,7 @@ import Edit from '@material-ui/icons/Edit'
 import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
 import PropTypes from 'prop-types'
+import Like from './likes.js'
  
 const useStyles = makeStyles(theme => ({
   root: theme.mixins.gutters({
