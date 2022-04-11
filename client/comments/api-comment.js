@@ -51,7 +51,7 @@ const listReplies = async (params, credentials, signal) => {
 
 const repliesByUserId = async (params, credentials, signal) => {
   try {
-    let response = await fetch('/api/comment/repliesbyid/' + params.commentId + '/' + params.userId, {
+    let response = await fetch('/api/comment/replies/' + params.commentId + '/' + params.userId, {
       method: 'GET',
       signal: signal,
       headers: {
