@@ -60,7 +60,7 @@ export default function AddEvent() {
       eventEndTime: values.eventEndTime || undefined
     }
     const jwt = auth.isAuthenticated()
-    create({t: jwt.token},event).then((data) => {
+    create({userId: auth.isAuthenticated().user._id},{t: jwt.token},event).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error})
       } else {
