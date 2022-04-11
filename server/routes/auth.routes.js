@@ -9,7 +9,7 @@ router.route('/auth/signin')
 router.route('/auth/signout')
   .get(authCtrl.signout)
 router.route('/auth/admin/:userId')
-  .get(authCtrl.isAdmin)
+  .get(authCtrl.requireSignin, authCtrl.isAdmin)
 
 router.param('userId', userCtrl.userByID)
 
