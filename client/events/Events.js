@@ -57,9 +57,7 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-  const [values, setValues] = useState({
-    isAdmin : false,
-  })
+  let isAdmin = false
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -82,8 +80,8 @@ export default function Events({ match }) {
         console.log(data.error)
       } else {
         
-        setValues({ ...values, [isAdmin]: true})
-        console.log('is admin = ' + values.isAdmin)
+        isAdmin = true
+        console.log('is admin = ' + isAdmin)
       }
     })
 
@@ -128,7 +126,7 @@ export default function Events({ match }) {
                 </ListItem> 
                 <ListItemSecondaryAction>
                   {
-                    values.isAdmin==true && 
+                    isAdmin==true && 
                     <DeleteComment eventId={item._id} userId={match.params.userId}/>
                   }
                 </ListItemSecondaryAction>
