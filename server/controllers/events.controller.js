@@ -22,7 +22,7 @@ const list = async (req, res) => {
     let events
     if(req.auth.admin){
       events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
-    else{
+    if(!req.auth.admin){
       events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}
     res.json(events)
   } catch (err) {
