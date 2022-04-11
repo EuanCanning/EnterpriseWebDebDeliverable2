@@ -48,6 +48,7 @@ export default function likes(props) {
     console.log(passthrough.userId)
     console.log(passthrough.commentId)
     if (values.like==true){
+      console.log(jwt.token)
       userunlike({
         userId: passthrough.userId,
         commentId: passthrough.commentId
@@ -59,6 +60,7 @@ export default function likes(props) {
       })
     }
     else if (values.like==false){
+      console.log(jwt.token)
       userlike({
         userId: passthrough.userId,
         commentId: passthrough.commentId
