@@ -12,7 +12,8 @@ import {joke} from '../thirdparty/api-dadjokes.js'
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
-    margin: 'auto'
+    margin: 'auto',
+    padding: 50
   },
   media: {
     minHeight: 400
