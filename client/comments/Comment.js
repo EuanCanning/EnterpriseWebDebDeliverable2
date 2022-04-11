@@ -44,7 +44,7 @@ export default function Comments({match}) {
     const jwt = auth.isAuthenticated()
 
     listReplies({
-      commentId: match.params.userId
+      commentId: match.params.commentId
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
@@ -54,7 +54,7 @@ export default function Comments({match}) {
     })
 
     repliesByUserId({
-      commentId: match.params.userId,
+      commentId: match.params.commentId,
       userId: auth.isAuthenticated().user._id 
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
