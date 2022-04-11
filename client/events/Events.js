@@ -122,15 +122,17 @@ export default function Events({ match }) {
          {events.map((item, i) => {
            let st = new Date(item.eventStartTime)
            let et = new Date(item.eventEndTime)
+           let stminutes = 0
+           let etminutes = 0
            if(st.getMinutes()<10){
-              let stminutes = '0' + st.getMinutes().toString()
+              stminutes = '0' + st.getMinutes().toString()
            }else{
-              let stminutes = st.getMinutes().toString()
+              stminutes = st.getMinutes().toString()
            }
            if(et.getMinutes()<10){
-              let etminutes = '0' + et.getMinutes().toString()
+              etminutes = '0' + et.getMinutes().toString()
            }else{
-              let etminutes = et.getMinutes().toString()
+              etminutes = et.getMinutes().toString()
            }
           return <Paper className={classes.root} elevation={4}>
             <List>
