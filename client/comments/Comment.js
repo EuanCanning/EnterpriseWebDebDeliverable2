@@ -31,6 +31,10 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
+  },
+  paper:{
+    padding: theme.spacing(1),
+    margin: theme.spacing(5)
   }
 }))
 
@@ -99,14 +103,14 @@ export default function Comments({match},props) {
 
     return (
       <div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.paper} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Comment
         </Typography>
         <List>
         <ListItem>
           <ListItem Button> 
-          <ListItemText primary={comment.name} secondary={comment.comment}/>
+          <ListItemText primary={comment.name + '    Likes: ' + item.likes} secondary={comment.comment}/>
           </ListItem> 
           <ListItemSecondaryAction>
           </ListItemSecondaryAction>
@@ -121,7 +125,7 @@ export default function Comments({match},props) {
          {comments.map((item, i) => {
           return <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={item.name} secondary={item.comment}/>
+                  <ListItemText primary={item.name + '    Likes: ' + item.likes} secondary={item.comment}/>
                   </ListItem> 
                   <ListItemSecondaryAction>
                   {
