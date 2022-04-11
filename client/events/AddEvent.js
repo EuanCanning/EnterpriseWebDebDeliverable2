@@ -107,7 +107,17 @@ export default function AddEvent() {
             
           </ListItem>
           <ListItem>
-            <TextArea id="eventEndTime" label="End Time" className={classes.textArea} value={values.eventEndTime} onChange={handleChange('eventEndTime')} margin="normal"/>
+          <LocalizationProvider dateAdapter={AdapterDateFns} className={classes.textField}>
+              <DateTimePicker
+                renderInput={(props) => <TextField {...props}  className={classes.textField}/>}
+                label="EndTime"
+                value={values.eventEndTime}
+                onChange={(newValue => {
+                  setValues({ ...values, eventEndTime: newValue})
+                })}
+                className={classes.textField}
+              />
+            </LocalizationProvider>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
