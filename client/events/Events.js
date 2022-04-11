@@ -153,9 +153,7 @@ export default function Events({ match }) {
                         console.log(myrsvp.eventID)
                         console.log(item._id)
                         if (myrsvp.eventID==item._id){
-                          return <div>
-                            <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>
-                      </div>}
+                          return <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>}
                       }
                     )
                       
