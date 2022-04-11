@@ -22,13 +22,13 @@ import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
  
 const useStyles = makeStyles(theme => ({
+  root: theme.mixins.gutters({
+    padding: theme.spacing(1),
+    margin: theme.spacing(5)
+  }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
-  },
-  paper:{
-    padding: theme.spacing(1),
-    margin: theme.spacing(5)
   }
 }))
 
@@ -72,7 +72,7 @@ export default function Comments({match}) {
 
     return (
       <div>
-      <Paper elevation={4} className={classes.paper}>
+      <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Comment
         </Typography>
