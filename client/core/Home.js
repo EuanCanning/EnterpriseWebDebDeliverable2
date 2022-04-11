@@ -12,13 +12,7 @@ import {joke} from '../thirdparty/api-dadjokes.js'
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 600,
-    margin: 'auto',
-    marginTop: theme.spacing(5),
-    marginBottom: theme.spacing(5)
-  },
-  title: {
-    padding:`${theme.spacing(3)}px ${theme.spacing(2.5)}px ${theme.spacing(2)}px`,
-    color: theme.palette.openTitle
+    margin: 'auto'
   },
   media: {
     minHeight: 400
@@ -70,15 +64,12 @@ export default function Home(){
           <Typography variant="h6" className={classes.title}>
             Home Page
           </Typography>
-          <Link to="/users"> Users </Link>
           <CardMedia className={classes.media} image={myImg} title="My Image"/>
-          <Typography variant="body2" component="p" className={classes.credit} color="textSecondary">Photo: Chompster</Typography>
+          
           <CardContent>
             <Typography variant="body1" component="p">
-              Welcome to Lab 6 home page.
-              <div>
-              {jokes.joke}
-              </div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+              
             </Typography>
           </CardContent>
         </Card>
