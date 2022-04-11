@@ -112,8 +112,6 @@ export default function Comments({match},props) {
           <ListItem Button> 
           <ListItemText primary={comment.name + '    Likes: ' + comment.likes} secondary={comment.comment}/>
           </ListItem> 
-          <ListItemSecondaryAction>
-          </ListItemSecondaryAction>
         </ListItem>
         </List>
       </Paper>
