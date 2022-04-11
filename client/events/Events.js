@@ -97,17 +97,7 @@ export default function Events({ match }) {
       }
     })
 
-    isAdmin({
-      userId: match.params.userId
-    },{t: jwt.token}, signal).then((data) => {
-      if (data && data.error) {
-        console.log(data.error)
-      } else {
-        console.log('hi')
-        console.log(data)
-        setMyrsvps(data)
-      }
-    })
+    
 
     
 
