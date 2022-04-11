@@ -58,7 +58,7 @@ export default function Events({ match }) {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [myrsvps, setMyrsvps] = useState([])
-  let isAdminbool = false
+  const [userisadmin, setUserisadmin] = useState([])
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
@@ -81,8 +81,8 @@ export default function Events({ match }) {
         console.log(data.error)
       } else {
         
-        isAdminbool = true
-        console.log('is admin = ' + isAdminbool)
+        setUserisadmin(true)
+        console.log('is admin = ' + userisadmin)
       }
     })
 
@@ -126,9 +126,8 @@ export default function Events({ match }) {
                 <ListItemText primary={item.eventName} className={classes.title2}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
-                <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   {
-                    isAdminbool && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
+                    userisadmin && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   }
                 </ListItemSecondaryAction>
               </ListItem> 
