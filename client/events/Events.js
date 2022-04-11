@@ -81,7 +81,7 @@ export default function Events({ match }) {
       } else {
         
         isAdminbool = true
-        console.log('is admin = ' + isAdmin)
+        console.log('is admin = ' + isAdminbool)
       }
     })
 
