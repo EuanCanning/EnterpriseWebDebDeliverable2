@@ -20,7 +20,7 @@ import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
 import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
-import Like from './Likes'
+import Like from './likes.js'
  
 const useStyles = makeStyles(theme => ({
   title: {
