@@ -91,7 +91,7 @@ export default function AddEvent() {
             <TextArea id="description" label="Description" className={classes.textArea} value={values.description} onChange={handleChange('description')} margin="normal"/>
           </ListItem>
           <ListItem>
-            <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <LocalizationProvider dateAdapter={AdapterDateFns} className={classes.textField}>
               <DateTimePicker
                 renderInput={(props) => <TextField {...props} />}
                 label="StartTime"
@@ -99,7 +99,6 @@ export default function AddEvent() {
                 onChange={(newValue => {
                   setValues({ ...values, eventStartTime: newValue})
                 })}
-                margin="auto"
                 className={classes.textField}
               />
             </LocalizationProvider>
@@ -111,11 +110,11 @@ export default function AddEvent() {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
                 {values.error}</Typography>)
-            }
+            } 
           </ListItem>
           <ListItem>
             <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
-            </ListItem>
+          </ListItem>
        </List> 
       </Paper>
       
