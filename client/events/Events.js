@@ -121,7 +121,17 @@ export default function Events({ match }) {
         
          {events.map((item, i) => {
            let st = new Date(item.eventStartTime)
-           let et = new Date(item.eventStartTime)
+           let et = new Date(item.eventEndTime)
+           if(st.getMinutes()<10){
+              let stminutes = '0' + st.getMinutes().toString()
+           }else{
+              let stminutes = st.getMinutes().toString()
+           }
+           if(et.getMinutes()<10){
+              let etminutes = '0' + et.getMinutes().toString()
+           }else{
+              let etminutes = et.getMinutes().toString()
+           }
           return <Paper className={classes.root} elevation={4}>
             <List>
               <ListItem>
@@ -165,8 +175,8 @@ export default function Events({ match }) {
                 <ListItem>
                   <ListItem Button> 
                   <ListItemText primary={'Date: ' + st.getDate() +'/' + st.getMonth() +'/' + st.getFullYear() 
-                  + '   Start Time: ' + st.getHours() + ':' + st.getMinutes()
-                  + '   End Time: ' + et.getHours() + ':' + et.getMinutes()} className={classes.description}/>
+                  + '   Start Time: ' + st.getHours() + ':' + stminutes
+                  + '   End Time: ' + et.getHours() + ':' + etminutes} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
                 
