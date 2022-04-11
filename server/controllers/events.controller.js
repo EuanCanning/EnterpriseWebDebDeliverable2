@@ -19,12 +19,11 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    /*
-    if(req.profile.admin){
-      let events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
+    let events
+    if(req.auth.admin){
+      events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
     else{
-      let events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}*/
-    let events = await Event.find().select('_id eventName description eventStartTime eventEndTime')
+      events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}
     res.json(events)
   } catch (err) {
     return res.status(400).json({

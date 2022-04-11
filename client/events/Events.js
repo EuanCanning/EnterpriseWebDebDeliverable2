@@ -139,7 +139,7 @@ export default function Events({ match }) {
               <ListItem>
                 <ListItem Button> 
                 <ListItemText primary={item.eventName} className={classes.title2}/>
-                {/*userisadmin && <ListItemText primary={'Rsvps: ' + item.Rsvps} className={classes.title2}/> */}
+                {userisadmin && <ListItemText primary={'Rsvps: ' + item.Rsvps} className={classes.title2}/> }
                 </ListItem> 
                 <ListItemSecondaryAction>
                   {
