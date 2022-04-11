@@ -29,10 +29,10 @@ import AddEvent from './AddEvent.js'
 
  
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
+  normal:{
     padding: theme.spacing(1),
     margin: theme.spacing(3)
-  }),
+  },
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
@@ -112,7 +112,7 @@ export default function Events({ match }) {
 
     return (
       <div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.normal} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Events
         </Typography>
@@ -135,7 +135,7 @@ export default function Events({ match }) {
            }else{
               etminutes = et.getMinutes().toString()
            }
-          return <Paper className={classes.root} elevation={4}>
+          return <Paper className={classes.normal} elevation={4}>
             <List>
               <ListItem>
                 <ListItem Button> 

@@ -22,10 +22,10 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import TextField from '@mui/material/TextField'
 
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
-    padding: theme.spacing(1),
-    margin: theme.spacing(5)
-  }),
+  normal:{
+  padding: theme.spacing(1),
+  margin: theme.spacing(5)
+  },
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
@@ -84,7 +84,7 @@ export default function AddEvent() {
   
   
     return (<div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.normal} elevation={4}>
         <List>
           <ListItem>
             <TextArea id="eventName" label="Event Name" className={classes.textArea} value={values.eventName} onChange={handleChange('eventName')} margin="normal"/>
