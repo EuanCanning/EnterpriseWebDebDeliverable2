@@ -18,7 +18,7 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let comments = await Comment.find().select('_id userId name comment likes created').sort({ created: -1 })
+    let comments = await Comment.find({reply : false}).select('_id userId name comment likes created').sort({ created: -1 })
     res.json(comments)
   } catch (err) {
     return res.status(400).json({

@@ -19,7 +19,10 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let events = await Event.find().select('_id eventName description eventStartTime eventEndTime')
+    if(req.profile.admin){
+      let events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
+    else{
+      let events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}
     res.json(events)
   } catch (err) {
     return res.status(400).json({

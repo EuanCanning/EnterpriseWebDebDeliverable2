@@ -17,6 +17,14 @@ const CommentSchema = new mongoose.Schema({
     trim: true,
     required: 'Comment is required'
   },
+  reply: {
+    type:Boolean,
+    default: false
+  },
+  replyTo:{
+    type:String,
+    trim: true
+  },
   likes: {
     type: Number,
     default: 0,
