@@ -103,21 +103,21 @@ export default function Comments({match},props) {
 
     return (
       <div>
-      <Paper className={classes.paper} elevation={4}>
+      <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Comment
         </Typography>
         <List>
         <ListItem>
           <ListItem Button> 
-          <ListItemText primary={comment.name + '    Likes: ' + item.likes} secondary={comment.comment}/>
+          <ListItemText primary={comment.name + '    Likes: ' + comment.likes} secondary={comment.comment}/>
           </ListItem> 
           <ListItemSecondaryAction>
           </ListItemSecondaryAction>
         </ListItem>
         </List>
       </Paper>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.paper} elevation={4}>
       <Typography variant="h6" className={classes.title}>
           Replies
         </Typography>
