@@ -113,6 +113,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     let comment = req.comment
+    await Like.deleteMany({commentID : req.comment._id})
     let deletedComment = await comment.remove()
     res.json(deletedComment)
   } catch (err) {

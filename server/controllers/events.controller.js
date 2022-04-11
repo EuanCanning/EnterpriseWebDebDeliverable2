@@ -72,6 +72,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     let event = req.event
+    await Rsvp.deleteMany({eventID : req.event._id})
     let deletedEvent = await event.remove()
     res.json(deletedEvent)
   } catch (err) {
