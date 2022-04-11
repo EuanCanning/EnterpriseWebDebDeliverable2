@@ -102,8 +102,8 @@ const hasAdminAuthorization = (req, res, next) => {
 
 
 const isAdmin = (req, res) => {
-  
-console.log(req.auth.admin)
+console.log(req.profile)
+console.log(req.profile.admin)
   
 const authorized = req.profile && req.auth && req.profile._id == req.auth._id && req.profile.admin == true
 if (!(authorized)) {
