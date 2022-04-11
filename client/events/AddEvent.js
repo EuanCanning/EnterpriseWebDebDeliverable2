@@ -35,6 +35,11 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     width: 500
   },
+  textField: {
+    margin: 'auto',
+    height: 100,
+    width: 500
+  },
   submit: {
     margin: 'auto'
   }
@@ -95,6 +100,7 @@ export default function AddEvent() {
                   setValues({ ...values, eventStartTime: newValue})
                 })}
                 margin="auto"
+                className={classes.textField}
               />
             </LocalizationProvider>
             
