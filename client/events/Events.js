@@ -165,8 +165,8 @@ export default function Events({ match }) {
                 <ListItem>
                   <ListItem Button> 
                   <ListItemText primary={'Date: ' + st.getDate() +'/' + st.getMonth() +'/' + st.getFullYear() 
-                  + '   Start Time: ' + item.eventStartTime.substring(11, 16) 
-                  + '   End Time: ' + item.eventEndTime.substring(11, 16)} className={classes.description}/>
+                  + '   Start Time: ' + st.getHours() + ':' + st.getMinutes()
+                  + '   End Time: ' + et.getHours() + ':' + et.getMinutes()} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
                 
