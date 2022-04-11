@@ -21,9 +21,9 @@ const list = async (req, res) => {
   try {
     let events
     console.log('this is it listing events' + req.auth.admin)
-    if(req.auth.admin){
+    if(req.profile.admin){
       events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
-    if(!req.auth.admin){
+    if(!req.profile.admin){
       events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}
     console.log('this is it listing events' + events)
     res.json(events)
