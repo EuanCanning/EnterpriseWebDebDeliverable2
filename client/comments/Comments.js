@@ -52,6 +52,8 @@ export default function Comments() {
       }
     })
 
+    
+
     listByUserId({
       userId: auth.isAuthenticated().user._id 
     },{t: jwt.token}, signal).then((data) => {
@@ -91,8 +93,7 @@ export default function Comments() {
           return <ListItem>
                   <Link to={"/comment/" + item._id} key={i}>
                   <ListItem Button> 
-                  <ListItemText primary={item.name} secondary={item.comment}/>
-                  <ListItemText primary={'Likes: ' + item.likes}/>
+                  <ListItemText primary={item.name + '    Likes: ' + item.likes} secondary={item.comment}/>
                   </ListItem> 
                   </Link>
                   <ListItemSecondaryAction>
