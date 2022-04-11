@@ -116,9 +116,9 @@ export default function Comments({match},props) {
           {
             mylikes.map((mylike, i) => {
               console.log(mylike.commentID)
-              console.log(item._id)
-              if (mylike.commentID==item._id){
-                return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+              console.log(comment._id)
+              if (mylike.commentID==comment._id){
+                return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={comment._id}/>
             }
             }
           )
@@ -127,10 +127,10 @@ export default function Comments({match},props) {
           }
           {
             !mylikes.find((mylike) => {
-              if (mylike.commentID==item._id){
+              if (mylike.commentID==comment._id){
                 return true}
             }
-          ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={item._id}/>
+          ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={comment._id}/>
           }
           </ListItemSecondaryAction>
         </ListItem>
