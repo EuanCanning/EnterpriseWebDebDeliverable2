@@ -126,6 +126,7 @@ export default function Events({ match }) {
                 <ListItemText primary={item.eventName} className={classes.title2}/>
                 </ListItem> 
                 <ListItemSecondaryAction>
+                <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   {
                     isAdminbool && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   }
