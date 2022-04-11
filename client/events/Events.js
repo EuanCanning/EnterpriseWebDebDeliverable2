@@ -24,6 +24,7 @@ import myImg from './../assets/images/myimage.png'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import Rsvp from './Rsvp.js'
+import DeleteEvent from './DeleteEvent.js'
 
  
 const useStyles = makeStyles(theme => ({
@@ -127,7 +128,7 @@ export default function Events({ match }) {
                 <ListItemSecondaryAction>
                   {
                     isAdminbool==true && 
-                    <DeleteComment eventId={item._id} userId={match.params.userId}/>
+                    <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   }
                 </ListItemSecondaryAction>
               </ListItem> 
