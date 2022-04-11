@@ -72,7 +72,7 @@ export default function Comments({match}) {
 
     return (
       <div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Comment
         </Typography>
