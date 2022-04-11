@@ -142,11 +142,6 @@ export default function Events({ match }) {
                 <ListItemText primary={item.eventName} className={classes.title2}/>
                 {userisadmin && <ListItemText primary={'Rsvps: ' + item.Rsvps} className={classes.title2}/> }
                 </ListItem> 
-                <ListItemSecondaryAction>
-                  {
-                    userisadmin && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
-                  }
-                </ListItemSecondaryAction>
               </ListItem> 
               <ListItem>
                 <ListItem Button> 
@@ -172,6 +167,9 @@ export default function Events({ match }) {
                         return true}
                     }
                   ) && <Rsvp rsvp={false} userId={match.params.userId} eventId={item._id}/>
+                  }
+                  {
+                    userisadmin && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
                   }
                 
                 </ListItemSecondaryAction>
