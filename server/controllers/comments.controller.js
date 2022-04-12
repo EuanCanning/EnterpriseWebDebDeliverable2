@@ -213,12 +213,7 @@ const likes = async (req,res) => {
     console.log(userId)
     let commentIDs = await Like.find({userID : userId}).select('commentID')
     console.log(commentIDs)
-    if (commentIDs.length == 0) {
-      return res.status('400').json({
-        error: "likes do not exist"
-      })
     
-    }
     
     res.json(commentIDs)   
   }catch (err){
