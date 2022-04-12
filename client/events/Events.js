@@ -136,7 +136,7 @@ export default function Events({ match }) {
            }else{
               etminutes = et.getMinutes().toString()
            }
-           month = st.getMonth() + 1
+           let month = st.getMonth() + 1
           return <Paper className={classes.normal} elevation={4}>
             <List>
               <ListItem>
