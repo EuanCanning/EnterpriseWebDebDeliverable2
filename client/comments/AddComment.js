@@ -67,7 +67,7 @@ export default function AddComment(props) {
         setValues({ ...values, error: data.error})
       } else {
         setValues({ ...values, error: ''})
-        location.reload()
+        window.location.href = '/comments'
       }
     })
   }
