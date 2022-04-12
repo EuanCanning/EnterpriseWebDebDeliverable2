@@ -63,7 +63,7 @@ export default function Home(){
     return (
         <Card className={classes.card}>
           <Typography variant="h6" className={classes.title}>
-            Home Page
+            Justice for Ugly Animals
           </Typography>
           <CardMedia className={classes.media} image={myImg} title="My Image"/>
           

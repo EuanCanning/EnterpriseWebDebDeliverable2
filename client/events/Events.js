@@ -148,6 +148,7 @@ export default function Events({ match }) {
                 <ListItemText primary={item.description} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction> 
+                <ListItemText primary={'Rsvp:'} className={classes.title2}/>
                   {
                       myrsvps.map((myrsvp, i) => {
                         console.log(myrsvp.eventID)
