@@ -136,6 +136,7 @@ export default function Events({ match }) {
            }else{
               etminutes = et.getMinutes().toString()
            }
+           month = st.getMonth() + 1
           return <Paper className={classes.normal} elevation={4}>
             <List>
               <ListItem>
@@ -179,7 +180,7 @@ export default function Events({ match }) {
               </ListItem>   
                 <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={'Date: ' + st.getDate() +'/' + st.getMonth() +'/' + st.getFullYear() 
+                  <ListItemText primary={'Date: ' + st.getDate() +'/' + month +'/' + st.getFullYear() 
                   + '   Start Time: ' + st.getHours() + ':' + stminutes
                   + '   End Time: ' + et.getHours() + ':' + etminutes} className={classes.description}/>
                 </ListItem> 
