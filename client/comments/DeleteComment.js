@@ -26,7 +26,7 @@ export default function DeleteComment(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        window.location.href = '/comment/' + props.commentId
+        window.location.href = '/comments'
       }
     })
   }
