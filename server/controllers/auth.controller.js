@@ -73,9 +73,9 @@ const hasAuthorization = (req, res, next) => {
 }
 
 const hasCommentAuthorization = (req, res, next) => {
-  console.log(req.profile.userId)
+  console.log(req.comment.userId)
   console.log(req.auth._id)
-  const authorized = req.profile && req.auth && req.profile.userId == req.auth._id
+  const authorized = req.comment && req.auth && req.comment.userId == req.auth._id
   if (!(authorized)) {
     return res.status('403').json({
       error: "User is not authorized"

@@ -25,14 +25,15 @@ import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import Rsvp from './Rsvp.js'
 import DeleteEvent from './DeleteEvent.js'
+import UpdateEvent from './UpdateEvent.js'
 import AddEvent from './AddEvent.js'
 
  
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
+  normal:{
     padding: theme.spacing(1),
     margin: theme.spacing(3)
-  }),
+  },
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle,
@@ -64,6 +65,7 @@ export default function Events({ match }) {
     const abortController = new AbortController()
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
+    setUserisadmin(false)
 
     list({
       userId: match.params.userId
@@ -111,7 +113,7 @@ export default function Events({ match }) {
 
     return (
       <div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.normal} elevation={4}>
         <Typography variant="h6" className={classes.title}>
           Events
         </Typography>
@@ -134,31 +136,27 @@ export default function Events({ match }) {
            }else{
               etminutes = et.getMinutes().toString()
            }
-          return <Paper className={classes.root} elevation={4}>
+           let month = st.getMonth() + 1
+          return <Paper className={classes.normal} elevation={4}>
             <List>
               <ListItem>
                 <ListItem Button> 
                 <ListItemText primary={item.eventName} className={classes.title2}/>
+                {userisadmin && <ListItemText primary={'Rsvps: ' + item.Rsvps} className={classes.title2}/> }
                 </ListItem> 
-                <ListItemSecondaryAction>
-                  {
-                    userisadmin && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
-                  }
-                </ListItemSecondaryAction>
               </ListItem> 
               <ListItem>
                 <ListItem Button> 
                 <ListItemText primary={item.description} className={classes.description}/>
                 </ListItem> 
                 <ListItemSecondaryAction> 
+                <ListItemText primary={'Rsvp:'} className={classes.title2}/>
                   {
                       myrsvps.map((myrsvp, i) => {
                         console.log(myrsvp.eventID)
                         console.log(item._id)
                         if (myrsvp.eventID==item._id){
-                          return <div>
-                            <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>
-                      </div>}
+                          return <Rsvp rsvp={true} userId={match.params.userId} eventId={item._id}/>}
                       }
                     )
                       
@@ -171,12 +169,18 @@ export default function Events({ match }) {
                     }
                   ) && <Rsvp rsvp={false} userId={match.params.userId} eventId={item._id}/>
                   }
+                  {
+                    userisadmin && <DeleteEvent eventId={item._id} userId={match.params.userId}/>
+                  }
+                  {
+                    userisadmin && <UpdateEvent eventId={item._id} eventName={item.eventName} description={item.description} eventStartTime={item.eventStartTime} eventEndTime={item.eventEndTime}/>
+                  }
                 
                 </ListItemSecondaryAction>
               </ListItem>   
                 <ListItem>
                   <ListItem Button> 
-                  <ListItemText primary={'Date: ' + st.getDate() +'/' + st.getMonth() +'/' + st.getFullYear() 
+                  <ListItemText primary={'Date: ' + st.getDate() +'/' + month +'/' + st.getFullYear() 
                   + '   Start Time: ' + st.getHours() + ':' + stminutes
                   + '   End Time: ' + et.getHours() + ':' + etminutes} className={classes.description}/>
                 </ListItem> 

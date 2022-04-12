@@ -1,31 +1,30 @@
 import React, {useState} from 'react'
+import PropTypes from 'prop-types'
+import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
-import TextArea from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
-import Icon from '@material-ui/core/Icon'
-import { makeStyles } from '@material-ui/core/styles'
-import {create} from './api-event.js'
+import EditIcon from '@material-ui/icons/Edit' 
 import Dialog from '@material-ui/core/Dialog'
 import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
-import {Link} from 'react-router-dom'
 import auth from '../auth/auth-helper'
-import Paper from '@material-ui/core/Paper'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
+import {update} from './api-event.js'
 import {Redirect} from 'react-router-dom'
+import TextArea from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'
 import TextField from '@mui/material/TextField'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
 
 const useStyles = makeStyles(theme => ({
-  normal:{
-  padding: theme.spacing(1),
-  margin: theme.spacing(5)
-  },
+  root: theme.mixins.gutters({
+    padding: theme.spacing(1),
+    margin: theme.spacing(5)
+  }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
@@ -35,56 +34,69 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     width: 500
   },
+  submit: {
+    margin: 'auto'
+  },
   textField: {
     margin: 'auto',
     height: 100,
     width: 500,
     fontSize:12,
     padding: 10,
-  },
-  submit: {
-    margin: 'auto'
   }
 }))
 
-
-
-export default function AddEvent() {
+export default function UpdateEvent(props) {
   const classes = useStyles()
+  const [open, setOpen] = useState(false)
   const [values, setValues] = useState({
-    eventName: '',
-    description: '',
-    eventStartTime: '',
-    eventEndTime: '',
-    error: ''
+    eventName: props.eventName,
+    description: props.description,
+    eventStartTime: props.eventStartTime,
+    eventEndTime: props.eventEndTime
   })
 
-  const handleChange = name => event => {
-    setValues({ ...values, [name]: event.target.value})
+
+  const jwt = auth.isAuthenticated()
+  const clickButton = () => {
+    setOpen(true)
   }
 
-  const clickSubmit = () => {
+  const handleChange = eventparameter => event => {
+    setValues({ ...values, [eventparameter]: event.target.value})
+  }
+
+  const updateComment = () => { 
     const event = {
-      eventName: values.eventName || undefined,
-      description: values.description || undefined,
-      eventStartTime: values.eventStartTime || undefined,
-      eventEndTime: values.eventEndTime || undefined
+      eventName: values.eventName|| undefined,
+      description: values.description|| undefined,
+      eventStartTime: values.eventStartTime|| undefined,
+      eventEndTime: values.eventEndTime|| undefined
     }
-    const jwt = auth.isAuthenticated()
-    create({userId: auth.isAuthenticated().user._id},{t: jwt.token},event).then((data) => {
-      if (data.error) {
-        setValues({ ...values, error: data.error})
+    update({
+      userId: auth.isAuthenticated().user._id,
+      eventId: props.eventId
+    }, {t: jwt.token}, event).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
       } else {
-        setValues({ ...values, error: ''})
         location.reload()
       }
     })
   }
+  const handleRequestClose = () => {
+    setOpen(false)
+  }
 
   
-  
-    return (<div>
-      <Paper className={classes.normal} elevation={4}>
+    return (<span>
+      <IconButton aria-label="Edit" onClick={clickButton} >
+        <EditIcon/>
+      </IconButton>
+
+      <Dialog open={open} onClose={handleRequestClose}>
+        <DialogTitle>{"Edit Event"}</DialogTitle>
+        <DialogContent>
         <List>
           <ListItem>
             <TextArea id="eventName" label="Event Name" className={classes.textArea} value={values.eventName} onChange={handleChange('eventName')} margin="normal"/>
@@ -119,20 +131,32 @@ export default function AddEvent() {
               />
             </LocalizationProvider>
             </ListItem>
-            <ListItem>
+          <ListItem>
             {
               values.error && (<Typography component="p" color="error">
                 <Icon color="error" className={classes.error}>error</Icon>
                 {values.error}</Typography>)
             } 
           </ListItem>
-          <ListItem>
-            <Button color="primary" variant="contained" onClick={clickSubmit} className={classes.submit}>Submit</Button>
-          </ListItem>
-       </List> 
-      </Paper>
-      
-      
-    </div>
-    )
+        </List>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleRequestClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={updateComment} color="secondary" autoFocus="autoFocus">
+            Edit
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </span>)
+
 }
+UpdateEvent.propTypes = {
+  eventId: PropTypes.string.isRequired,
+  eventName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  eventStartTime: PropTypes.string.isRequired,
+  eventEndTime: PropTypes.string.isRequired
+}
+

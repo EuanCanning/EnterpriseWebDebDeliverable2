@@ -60,7 +60,7 @@ export default function UpdateComment(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        location.reload()
+        window.location.href = '/comments'
       }
     })
   }

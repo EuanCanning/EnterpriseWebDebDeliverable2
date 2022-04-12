@@ -14,15 +14,20 @@ import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward'
 import Person from '@material-ui/icons/Person'
 import {Link} from 'react-router-dom'
-import {list,listByUserId,userLikes} from './api-comment.js'
-import auth from './../auth/auth-helper'
+import {listReplies,repliesByUserId,read,userLikes} from './api-comment.js'
+import auth from '../auth/auth-helper'
 import AddComment from './AddComment.js'
 import Edit from '@material-ui/icons/Edit' 
 import DeleteComment from './DeleteComment.js'
 import UpdateComment from './UpdateComment.js'
+import PropTypes from 'prop-types'
 import Like from './likes.js'
  
 const useStyles = makeStyles(theme => ({
+  root: theme.mixins.gutters({
+    padding: theme.spacing(1),
+    margin: theme.spacing(5)
+  }),
   title: {
     margin: `${theme.spacing(4)}px 0 ${theme.spacing(2)}px`,
     color: theme.palette.openTitle
@@ -33,18 +38,25 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Comments() {
+export default function Comments({match},props) {
   const classes = useStyles()
+  const [comment, setComment] = useState([])
   const [comments, setComments] = useState([])
   const [mycomments, setMycomments] = useState([])
   const [mylikes, setMylikes] = useState([])
+  
 
   useEffect(() => {
     const abortController = new AbortController()
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
 
-    list({t: jwt.token}, signal).then((data) => {
+    console.log('listreplies data')
+    console.log(match.params.commentId)
+    console.log('listreplies data')
+    listReplies({
+      commentId: match.params.commentId
+    },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
@@ -52,18 +64,21 @@ export default function Comments() {
       }
     })
 
-    
-
-    listByUserId({
-      userId: auth.isAuthenticated().user._id 
+    console.log('read data')
+    console.log(match.params.commentId )
+    console.log('read data')
+    read({
+      commentId: match.params.commentId 
     },{t: jwt.token}, signal).then((data) => {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        setMycomments(data)
+        setComment(data)
       }
     })
-
+    console.log('userlikes data')
+    console.log(auth.isAuthenticated().user._id)
+    console.log('userlikes data')
     userLikes({
       userId: auth.isAuthenticated().user._id
     },{t: jwt.token}, signal).then((data) => {
@@ -75,6 +90,20 @@ export default function Comments() {
         setMylikes(data)
       }
     })
+    console.log('repliesByUserId data')
+    console.log(match.params.commentId)
+    console.log(auth.isAuthenticated().user._id)
+    console.log('repliesByUserId data')
+    repliesByUserId({
+      commentId: match.params.commentId,
+      userId: auth.isAuthenticated().user._id 
+    },{t: jwt.token}, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setMycomments(data)
+      }
+    })
 
     return function cleanup(){
       abortController.abort()
@@ -84,41 +113,74 @@ export default function Comments() {
 
     return (
       <div>
-      <Paper elevation={4} className={classes.paper}>
+      <Paper className={classes.root} elevation={4}>
         <Typography variant="h6" className={classes.title}>
-          Comments
+          Comment
+        </Typography>
+        <List>
+        <ListItem>
+          <ListItem Button> 
+          <ListItemText primary={comment.name + '    Likes: ' + comment.likes} secondary={comment.comment}/>
+          </ListItem> 
+          <ListItemSecondaryAction>
+          {
+            mylikes.map((mylike, i) => {
+              console.log(mylike.commentID)
+              console.log(comment._id)
+              if (mylike.commentID==comment._id){
+                return <Like like={true} userId={auth.isAuthenticated().user._id} commentId={comment._id}/>
+            }
+            }
+          )
+            
+          
+          }
+          {
+            !mylikes.find((mylike) => {
+              if (mylike.commentID==comment._id){
+                return true}
+            }
+          ) && <Like like={false} userId={auth.isAuthenticated().user._id} commentId={comment._id}/>
+          }
+          </ListItemSecondaryAction>
+        </ListItem>
+        </List>
+      </Paper>
+      <Paper className={classes.paper} elevation={4}>
+      <Typography variant="h6" className={classes.title}>
+          Replies
         </Typography>
         <List>
          {comments.map((item, i) => {
           return <ListItem>
-                  <Link to={"/comment/" + item._id} key={i}>
                   <ListItem Button> 
                   <ListItemText primary={item.name + '    Likes: ' + item.likes} secondary={item.comment}/>
                   </ListItem> 
-                  </Link>
                   <ListItemSecondaryAction>
                   {
                       
-                        mycomments.map((myitem, i) => {
-                          if (myitem._id==item._id){
-                            return <DeleteComment commentId={item._id}/>}
-                        }
-                        
-                      )
-                      
-                    }
-
-{
-                      
                       mycomments.map((myitem, i) => {
                         if (myitem._id==item._id){
-                          return <UpdateComment commentId={item._id} comment={item.comment}/>}
+                          return <DeleteComment commentId={item._id}/>}
                       }
                       
                     )
                     
                   }
-                    {
+
+{
+                    
+                    mycomments.map((myitem, i) => {
+                      if (myitem._id==item._id){
+                        console.log(item._id)
+                        console.log(item.comment)
+                        return <UpdateComment commentId={item._id} comment={item.comment}/>}
+                    }
+                    
+                  )
+                  
+                }
+                {
                       mylikes.map((mylike, i) => {
                         console.log(mylike.commentID)
                         console.log(item._id)
@@ -146,7 +208,12 @@ export default function Comments() {
         </List>
       </Paper>
       
-      <AddComment reply={false} replyTo={null}/>
+      <AddComment reply={true} replyTo={match.params.commentId}/>
       </div>
     )
+}
+
+Comments.propTypes = {
+  comment: PropTypes.bool,
+  name: PropTypes.string.isRequired
 }

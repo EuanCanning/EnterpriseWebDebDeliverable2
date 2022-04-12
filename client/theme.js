@@ -7,15 +7,15 @@ const theme = createTheme({
     },
     palette: {
       primary: {
-      light: '#5c67a3',
-      main: '#3f4771',
-      dark: '#2e355b',
-      contrastText: '#fff',
+      light: '#30ffe0',
+      main: '#00e6c3',
+      dark: '#00b096',
+      contrastText: '#000',
     },
     secondary: {
-      light: '#ff79b0',
-      main: '#ff4081',
-      dark: '#c60055',
+      light: '#ff4d96',
+      main: '#ff0069',
+      dark: '#d10056',
       contrastText: '#000',
     },
       openTitle: '#3f4771',

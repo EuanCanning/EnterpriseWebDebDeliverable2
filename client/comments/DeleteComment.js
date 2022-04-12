@@ -26,7 +26,7 @@ export default function DeleteComment(props) {
       if (data && data.error) {
         console.log(data.error)
       } else {
-        location.reload()
+        window.location.href = '/comments'
       }
     })
   }
@@ -41,7 +41,7 @@ export default function DeleteComment(props) {
       </IconButton>
 
       <Dialog open={open} onClose={handleRequestClose}>
-        <DialogTitle>{"Delete Account"}</DialogTitle>
+        <DialogTitle>{"Delete Comment"}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Confirm to delete your comment.

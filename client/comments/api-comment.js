@@ -32,7 +32,39 @@ const list = async (credentials, signal) => {
   }
 }
 
+const listReplies = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/comment/replies/' + params.commentId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
 
+const repliesByUserId = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/comment/replies/' + params.commentId + '/' + params.userId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
 
 const read = async (params, credentials, signal) => {
   try {
@@ -101,13 +133,67 @@ const listByUserId = async (params, credentials, signal) => {
   }
 }
 
+const userlike = async (params, credentials) => {
+  try {
+    let response = await fetch('/api/like/' + params.userId + '/' + params.commentId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const userunlike = async (params, credentials) => {
+  try {
+    let response = await fetch('/api/unlike/' + params.userId + '/' + params.commentId, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
+const userLikes = async (params, credentials, signal) => {
+  try {
+    let response = await fetch('/api/likes/' + params.userId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + credentials.t
+      }
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+}
+
 export {
   create,
   list,
+  listReplies,
   read,
   update,
   remove,
-  listByUserId
+  listByUserId,
+  repliesByUserId,
+  userlike,
+  userunlike,
+  userLikes
 }
 
 

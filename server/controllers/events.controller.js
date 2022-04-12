@@ -19,7 +19,13 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
   try {
-    let events = await Event.find().select('_id eventName description eventStartTime eventEndTime')
+    let events
+    console.log('this is it listing events' + req.auth.admin)
+    if(req.profile.admin){
+      events = await Event.find().select('_id eventName description eventStartTime eventEndTime Rsvps')}
+    if(!req.profile.admin){
+      events = await Event.find().select('_id eventName description eventStartTime eventEndTime')}
+    console.log('this is it listing events' + events)
     res.json(events)
   } catch (err) {
     return res.status(400).json({
@@ -66,6 +72,7 @@ const update = async (req, res) => {
 const remove = async (req, res) => {
   try {
     let event = req.event
+    await Rsvp.deleteMany({eventID : req.event._id})
     let deletedEvent = await event.remove()
     res.json(deletedEvent)
   } catch (err) {

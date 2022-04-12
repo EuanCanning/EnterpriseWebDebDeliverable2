@@ -11,6 +11,7 @@ import EditProfile from './user/EditProfile'
 import UserAdmin from './user/UsersAdmin'
 import Comments from './comments/Comments'
 import Events from './events/Events'
+import Comment from './comments/Comment'
 
 const MainRouter = () => {
     return (<div>
@@ -25,6 +26,7 @@ const MainRouter = () => {
         <Route path="/useradmin/:userId" component={UserAdmin}/>
         <Route path="/comments" component ={Comments}/>
         <Route path="/events/:userId" component ={Events}/>
+        <Route path="/comment/:commentId" component ={Comment}/>
       </Switch>
     </div>)
 }

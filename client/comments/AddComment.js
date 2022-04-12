@@ -16,9 +16,10 @@ import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import {Redirect} from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const useStyles = makeStyles(theme => ({
-  root: theme.mixins.gutters({
+  root2: theme.mixins.gutters({
     padding: theme.spacing(1),
     margin: theme.spacing(5)
   }),
@@ -38,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 
 
 
-export default function AddComment() {
+export default function AddComment(props) {
   const classes = useStyles()
   const [values, setValues] = useState({
     userId: '',
@@ -56,7 +57,9 @@ export default function AddComment() {
     const comment = {
       userId: auth.isAuthenticated().user._id || undefined,
       name: auth.isAuthenticated().user.name || undefined,
-      comment: values.comment || undefined
+      comment: values.comment || undefined,
+      reply: props.reply || undefined,
+      replyTo: props.replyTo || undefined,
     }
     const jwt = auth.isAuthenticated()
     create({t: jwt.token},comment).then((data) => {
@@ -64,7 +67,7 @@ export default function AddComment() {
         setValues({ ...values, error: data.error})
       } else {
         setValues({ ...values, error: ''})
-        location.reload()
+        window.location.href = '/comments'
       }
     })
   }
@@ -72,7 +75,7 @@ export default function AddComment() {
   
   
     return (<div>
-      <Paper className={classes.root} elevation={4}>
+      <Paper className={classes.root2} elevation={4}>
         <List>
           <ListItem>
             <TextArea id="comment" label="Comment" className={classes.textArea} value={values.comment} onChange={handleChange('comment')} margin="normal"/>
@@ -91,4 +94,8 @@ export default function AddComment() {
       
     </div>
     )
+}
+AddComment.propTypes = {
+  reply: PropTypes.bool.isRequired,
+  replyTo: PropTypes.string.isRequired
 }
