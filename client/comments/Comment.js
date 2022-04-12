@@ -162,6 +162,8 @@ export default function Comments({match},props) {
                     
                     mycomments.map((myitem, i) => {
                       if (myitem._id==item._id){
+                        console.log(item._id)
+                        console.log(item.comment)
                         return <UpdateComment commentId={item._id} comment={item.comment}/>}
                     }
                     
