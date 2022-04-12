@@ -150,8 +150,11 @@ export default function UpdateEvent(props) {
     </span>)
 
 }
-UpdateComment.propTypes = {
-  commentId: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired
+UpdateEvent.propTypes = {
+  eventId: PropTypes.string.isRequired,
+  eventName: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  eventStartTime: PropTypes.string.isRequired,
+  eventEndTime: PropTypes.string.isRequired
 }
 
