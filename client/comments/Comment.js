@@ -51,6 +51,9 @@ export default function Comments({match},props) {
     const signal = abortController.signal
     const jwt = auth.isAuthenticated()
 
+    console.log('listreplies data')
+    console.log(match.params.commentId)
+    console.log('listreplies data')
     listReplies({
       commentId: match.params.commentId
     },{t: jwt.token}, signal).then((data) => {
@@ -61,7 +64,9 @@ export default function Comments({match},props) {
       }
     })
 
-
+    console.log('read data')
+    console.log(match.params.commentId )
+    console.log('read data')
     read({
       commentId: match.params.commentId 
     },{t: jwt.token}, signal).then((data) => {
@@ -71,7 +76,9 @@ export default function Comments({match},props) {
         setComment(data)
       }
     })
-
+    console.log('userlikes data')
+    console.log(auth.isAuthenticated().user._id)
+    console.log('userlikes data')
     userLikes({
       userId: auth.isAuthenticated().user._id
     },{t: jwt.token}, signal).then((data) => {
@@ -83,7 +90,10 @@ export default function Comments({match},props) {
         setMylikes(data)
       }
     })
-
+    console.log('repliesByUserId data')
+    console.log(match.params.commentId)
+    console.log(auth.isAuthenticated().user._id)
+    console.log('repliesByUserId data')
     repliesByUserId({
       commentId: match.params.commentId,
       userId: auth.isAuthenticated().user._id 
